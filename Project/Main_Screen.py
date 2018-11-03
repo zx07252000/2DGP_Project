@@ -45,9 +45,9 @@ def handle_events():
         else:
             if(event.type,event.key)==(SDL_KEYDOWN,SDLK_ESCAPE):
                 game_framework.quit()
-            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
+            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN) and change>1:
                 change=change-1
-            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
+            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP) and change <5:
                 change=change+1
             elif change==4and(event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
                 game_framework.change_state(Character_select)
@@ -60,22 +60,21 @@ def draw():
     clear_canvas()
     image.clip_draw(0, 0, 1020, 767, 512, 382)
     if(change==4):
-        new.clip_draw(0, 30, 200, 45, 500, 382)
-        option_L.clip_draw(0, 0, 150, 30, 510, 250)
-        Exit_L.clip_draw(0, 0, 150, 40, 510, 182)
+        new.clip_draw(0, 30, 200, 45, 500, 400)
+        option_L.clip_draw(0, 0, 150, 30, 510, 350)
+        Exit_L.clip_draw(0, 0, 150, 40, 515, 280)
     if(change==3):
-        new.clip_draw(0, 0, 200, 25, 500, 382)
-        option_L.clip_draw(0, 0, 150, 30, 510, 250)
-        Exit_L.clip_draw(0, 0, 150, 40, 510, 182)
-    if(change==2):
-        new.clip_draw(0, 0, 200, 25, 500, 382)
-        option.clip_draw(0, 0, 200, 30, 510, 250)
-        Exit_L.clip_draw(0, 0, 150, 40, 510, 182)
-    if (change == 1):
-        new.clip_draw(0, 0, 200, 25, 500, 382)
-        option_L.clip_draw(0, 0, 150, 30, 510, 250)
-        Exit.clip_draw(0,0, 200, 50, 510, 182)
-    print(change)
+        new.clip_draw(0, 0, 200, 25, 500, 400)
+        option.clip_draw(0, 0, 200, 30, 510, 350)
+        Exit_L.clip_draw(0, 0, 150, 40, 515, 280)
+    if (change == 2):
+        new.clip_draw(0, 0, 200, 25, 500, 400)
+        option_L.clip_draw(0, 0, 150, 30, 510, 350)
+        Exit.clip_draw(0,0, 200, 50, 515, 280)
+    elif(change<2or change>4):
+        new.clip_draw(0, 0, 200, 25, 500, 400)
+        option_L.clip_draw(0, 0, 150, 30, 510, 350)
+        Exit_L.clip_draw(0, 0, 150, 40, 515, 280)
 
 
     update_canvas()
