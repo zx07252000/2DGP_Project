@@ -20,7 +20,7 @@ class IdleState:
 
     @staticmethod
     def do(Cloud):
-        Cloud.frame = (Cloud.frame + 1) % 4
+        Cloud.frame = (Cloud.frame + 1) % 5
         Cloud.x = clamp(25, Cloud.x, 1020 - 25)
         Cloud.x+=Cloud.velocity
 
@@ -32,11 +32,11 @@ class IdleState:
     def draw(Cloud):
         if Cloud.dir == 1:
 
-            Cloud.image.clip_draw(95 , 50, 50, 40, Cloud.x, Cloud.y)
+            Cloud.image.clip_draw(Cloud.frame*47, 50, 50, 40, Cloud.x, Cloud.y)
 
         else:
 
-            Cloud.image.clip_draw(Cloud.frame*100, 50, 60, 40, Cloud.x, Cloud.y)
+            Cloud.image.clip_draw(Cloud.frame*47, 50, 50, 40, Cloud.x, Cloud.y)
             pass
 
 

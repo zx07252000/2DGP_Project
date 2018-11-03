@@ -18,7 +18,7 @@ class IdleState:
 
     @staticmethod
     def do(Sword):
-        Sword.frame = (Sword.frame + 1) % 8
+        Sword.frame = (Sword.frame + 1) % 4
         Sword.x = clamp(25, Sword.x, 1020 - 25)
         Sword.x += Sword.velocity
         pass
@@ -29,11 +29,11 @@ class IdleState:
     def draw(Sword):
         if Sword.dir == 1:
 
-            Sword.image.clip_draw(70, 0, 60, 60, Sword.x, Sword.y)
+            Sword.image.clip_draw(Sword.frame*50, 0, 40, 60, Sword.x, Sword.y)
 
         else:
 
-            Sword.image.clip_draw(70, 0, 60, 60, Sword.x, Sword.y)
+            Sword.image.clip_draw(Sword.frame*50, 0, 40, 60, Sword.x, Sword.y)
             pass
 
 

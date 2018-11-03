@@ -32,11 +32,11 @@ class IdleState:
     def draw(Chicken):
         if Chicken.dir == 1:
 
-            Chicken.image.clip_draw(95 , 50, 50, 40, Chicken.x, Chicken.y)
+            Chicken.image.clip_draw(Chicken.frame*50-2 , 50, 45, 40, Chicken.x, Chicken.y)
 
         else:
 
-            Chicken.image.clip_draw(Chicken.frame*100, 50, 60, 40, Chicken.x, Chicken.y)
+            Chicken.image.clip_draw(Chicken.frame*50-2, 50, 45, 40, Chicken.x, Chicken.y)
             pass
 
 
@@ -55,7 +55,7 @@ class RunState:
 
     @staticmethod
     def do(Chicken):
-        Chicken.frame = (Chicken.frame + 1) % 8
+        Chicken.frame = (Chicken.frame + 1) % 4
         Chicken.timer -= 1
         Chicken.x +=Chicken.velocity
         Chicken.y += Chicken.length
@@ -67,11 +67,11 @@ class RunState:
     def draw(Chicken):
         if Chicken.velocity == 1:
 
-            Chicken.image.clip_draw(260, 0, 60, 60, Chicken.x, Chicken.y)
+            Chicken.image.clip_draw(Chicken.frame*100, 0, 60, 60, Chicken.x, Chicken.y)
 
         else:
 
-            Chicken.image.clip_draw(260, 0, 60, 60, Chicken.x, Chicken.y)
+            Chicken.image.clip_draw(Chicken.frame*100, 0, 60, 60, Chicken.x, Chicken.y)
             pass
 
 

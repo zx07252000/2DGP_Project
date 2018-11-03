@@ -1,127 +1,174 @@
 from pico2d import *
-import game_framework
+from ball import Ball
 
-IDLE, Attack = range(2)
+import game_world
 
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP,UP_DOWN,DOWN_DOWN,UP_UP,DOWN_UP = range(8)
+# Boy Event
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP,SPACE_E,UP_DOWN,DOWN_DOWN,UP_UP,DOWN_UP = range(9)
 
 key_event_table = {
-
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
-
     (SDL_KEYDOWN, SDLK_LEFT): LEFT_DOWN,
-
     (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
-
     (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
-
-    (SDL_KEYDOWN, SDLK_UP): UP_DOWN,
-
     (SDL_KEYUP, SDLK_UP): UP_UP,
-
-    (SDL_KEYDOWN, SDLK_DOWN): DOWN_DOWN,
-
-    (SDL_KEYUP, SDLK_DOWN): DOWN_UP
-
+    (SDL_KEYDOWN, SDLK_UP): UP_DOWN,
+    (SDL_KEYUP, SDLK_DOWN): DOWN_UP,
+    (SDL_KEYDOWN, SDLK_SPACE): SPACE_E,
+    (SDL_KEYDOWN, SDLK_DOWN): DOWN_DOWN
 
 }
-next_state_table = { IDLE: {RIGHT_UP: Attack, LEFT_UP: Attack, RIGHT_DOWN: Attack, LEFT_DOWN: Attack,
-                            UP_DOWN:Attack,DOWN_DOWN:Attack,DOWN_UP:Attack,UP_UP:Attack},
-                     Attack: {RIGHT_UP: IDLE, LEFT_UP: IDLE, LEFT_DOWN: IDLE, RIGHT_DOWN:
-                         IDLE,UP_DOWN:IDLE,DOWN_DOWN:IDLE,DOWN_UP: IDLE, UP_UP: IDLE} }
+
+
+# Boy States
+
+class IdleState:
+
+    @staticmethod
+    def enter(Wukung, event):
+        if event == RIGHT_DOWN:
+            Wukung.velocity += 30
+        elif event == LEFT_DOWN:
+            Wukung.velocity -= 30
+        elif event == RIGHT_UP:
+            Wukung.velocity -= 30
+        elif event == LEFT_UP:
+            Wukung.velocity += 30
+        elif event == DOWN_DOWN:
+            Wukung.length -= 30
+        elif event == UP_DOWN:
+            Wukung.length += 30
+        elif event == DOWN_UP:
+            Wukung.length += 30
+        elif event == UP_UP:
+            Wukung.length -= 30
+
+
+
+    @staticmethod
+    def exit(Wukung, event):
+        if event == SPACE_E:
+            Wukung.fire_ball()
+        pass
+
+    @staticmethod
+    def do(Wukung):
+        Wukung.frame = (Wukung.frame + 1) % 8
+        Wukung.x = clamp(25, Wukung.x, 1020 - 25)
+
+
+
+    @staticmethod
+    def draw(Wukung):
+        if Wukung.dir == 1:
+
+            Wukung.image.clip_draw(70, 0, 60, 60, Wukung.x, Wukung.y)
+
+        else:
+
+            Wukung.image.clip_draw(70, 0, 60, 60, Wukung.x, Wukung.y)
+
+
+class RunState:
+
+    @staticmethod
+    def enter(Wukung, event):
+        if event == RIGHT_DOWN:
+            Wukung.velocity += 30
+        elif event == LEFT_DOWN:
+            Wukung .velocity -=30
+        elif event == RIGHT_UP:
+            Wukung.velocity -= 30
+
+        elif event == DOWN_DOWN:
+            Wukung.length -= 30
+        elif event == UP_DOWN:
+            Wukung.length += 30
+        elif event == DOWN_UP:
+            Wukung.length += 30
+        elif event == UP_UP:
+            Wukung.length -= 30
+
+        Wukung.dir = Wukung.velocity
+
+    @staticmethod
+    def exit(Wukung, event):
+        if event == SPACE_E:
+            Wukung.fire_ball()
+        pass
+
+    @staticmethod
+    def do(Wukung):
+        Wukung.frame = (Wukung.frame + 1) % 8
+        Wukung.timer -= 1
+        Wukung.x += Wukung.velocity
+        Wukung.y += Wukung.length
+        Wukung.x = clamp(25, Wukung.x, 1020 - 25)
+        Wukung.y = clamp(25, Wukung.y, 767 - 25)
+
+
+    @staticmethod
+    def draw(Wukung):
+        if Wukung.velocity == 1:
+
+            Wukung.image.clip_draw(260, 0, 60, 60, Wukung.x, Wukung.y)
+
+        else:
+
+            Wukung.image.clip_draw(260, 0, 60, 60, Wukung.x, Wukung.y)
+
+
+
+
+
+next_state_table = {
+    IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
+                DOWN_UP:RunState,DOWN_DOWN:RunState,UP_DOWN:RunState,UP_UP:RunState,
+                SPACE_E: IdleState},
+    RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: RunState, RIGHT_DOWN: RunState,
+               DOWN_UP:IdleState,DOWN_DOWN:RunState,UP_DOWN:RunState,UP_UP:IdleState,
+               SPACE_E: RunState}
+}
+
 class Wukung:
-    image=None
+
     def __init__(self):
-
-        self.event_que = []
-
-        self.x, self.y = 70, 70
-        if Wukung.image==None:
-            Wukung.image = load_image('Resource\\CharacterWukung.png')
-
-        self.cur_state = IDLE
-
+        self.x, self.y = 70 , 70
+        self.image = load_image('Resource\\CharacterWukung3.png')
         self.dir = 1
-
         self.velocity = 0
+        self.frame = 0
+        self.timer = 0
         self.length=0
+        self.event_que = []
+        self.cur_state = IdleState
+        self.cur_state.enter(self, None)
 
 
-        self.enter_state[IDLE](self)
-    def enter_IDLE(self):
-        self.timer = 1000
-        self.frame = 0
-    def exit_IDLE(self):
+    def fire_ball(self):
+        ball = Ball(self.x, self.y, self.dir * 3)
+        game_world.add_object(ball, 1)
         pass
-    def do_IDLE(self):
-        self.frame = (self.frame + 1) % 8
-        self.timer -=1
-    def draw_IDLE(self):
-        if self.dir == 1:
-            self.image.clip_draw(self.frame * 0, 240, 60, 60, self.x, self.y)
-        else:
-            self.image.clip_draw(self.frame * 0, 240, 60, 60, self.x, self.y)
-
-    def enter_Attack(self):
-        self.frame = 0
-        self.dir = self.velocity
-    def exit_Attack(self):
-        pass
-    def do_Attack(self):
-        self.frame = (self.frame + 1) % 8
 
 
-        self.x = clamp(25, self.x, 1000-25)
-    def draw_Attack(self):
-        if self.velocity == 1:
-            self.image.clip_draw(self.frame * 0, 170, 60, 60, self.x, self.y)
-        else:
-            self.image.clip_draw(self.frame * 0, 170, 60, 60, self.x, self.y)
 
     def add_event(self, event):
         self.event_que.insert(0, event)
 
-    def change_state(self,  state):
-        self.exit_state[self.cur_state](self)
-        self.enter_state[state](self)
-        self.cur_state = state
-    enter_state = {IDLE: enter_IDLE, Attack: enter_Attack}
-    exit_state = {IDLE: exit_IDLE, Attack: exit_Attack}
-    do_state = {IDLE: do_IDLE, Attack: do_Attack}
-    draw_state = {IDLE: draw_IDLE, Attack: draw_Attack}
-
     def update(self):
-        self.do_state[self.cur_state](self)
+        self.cur_state.do(self)
         if len(self.event_que) > 0:
             event = self.event_que.pop()
-            self.change_state(next_state_table[self.cur_state][event])
+            self.cur_state.exit(self, event)
+            self.cur_state = next_state_table[self.cur_state][event]
+            self.cur_state.enter(self, event)
 
     def draw(self):
-
-        self.draw_state[self.cur_state](self)
+        self.cur_state.draw(self)
 
 
     def handle_event(self, event):
-
         if (event.type, event.key) in key_event_table:
-
             key_event = key_event_table[(event.type, event.key)]
-
-            if key_event == RIGHT_DOWN:
-
-                self.x+=5
-
-            elif key_event == LEFT_DOWN:
-
-                self.x-=5
-            if key_event == UP_DOWN:
-
-                self.y += 5
-
-            elif key_event == DOWN_DOWN:
-
-                self.y -= 5
-
-
             self.add_event(key_event)
 

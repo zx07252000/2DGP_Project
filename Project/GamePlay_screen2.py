@@ -1,22 +1,30 @@
 import random
 import json
 import os
+import sys
 
+sys.path.insert(0,'C:\사용자\qaz04\Documents\GitHub\2DGP\1차 발표\Resource')
 from pico2d import *
 
 import game_framework
-
+import game_world
 
 from CharacterWukung import Wukung
 from Stage1screen import Stage1
 from Stage2screen import Stage2
 from Stage3screen import Stage3
 from Stage4screen import Stage4
+from Stage1_enemy_Cloud import Cloud
+from Stage1_enemy_Chicken import Chicken
+from Stage1_enemy_Sword import Sword
 
-name = "GamePlay_screen"
+
+name = "GamePlay_screen2"
 
 CharacterWukung=None
-
+Stage1_enemy_Cloud=None
+Stage1_enemy_Chicken=None
+Stage1_enemy_Sword=None
 Stage1screen=None
 Stage2screen=None
 Stage3screen=None
@@ -24,21 +32,28 @@ Stage4screen=None
 logo_time=0
 
 def enter():
-    global CharacterWukung,Stage1screen,Stage2screen,Stage3screen,Stage4screen
+    global CharacterWukung,Stage1screen,Stage2screen,Stage3screen,Stage4screen,\
+        Cloud,Chicken,Sword
     CharacterWukung = Wukung()
     Stage1screen=Stage1()
     Stage2screen = Stage2()
     Stage3screen=Stage3()
     Stage4screen = Stage4()
+    Stage1_enemy_Cloud = Cloud()
+    Stage1_enemy_Chicken=Chicken()
+    Stage1_enemy_Sword=Sword()
+
+    game_world.add_object(Stage1screen, 0)
+    game_world.add_object(CharacterWukung, 1)
+    game_world.add_object(Stage1_enemy_Cloud, 2)
+    game_world.add_object(Stage1_enemy_Chicken, 3)
+    game_world.add_object(Stage1_enemy_Sword, 4)
+
+
 
 
 def exit():
-    global CharacterWukung,Stage1screen,Stage2screen,Stage3screen,Stage4screen
-    del CharacterWukung
-    del Stage1screen
-    del Stage2screen
-    del Stage3screen
-    del Stage4screen
+    game_world.clear()
 
 def pause():
     pass
@@ -59,23 +74,15 @@ def handle_events():
             CharacterWukung.handle_event(event)
 
 def update():
-
-    CharacterWukung.update()
+    for game_object in game_world.all_objects():
+        game_object.update()
 
 def draw():
     clear_canvas()
-    Stage1screen.draw()
-    global logo_time
+    for game_object in game_world.all_objects():
+        game_object.draw()
 
-    if (logo_time > 1.0):
-        Stage2screen.draw()
-    if(logo_time>2.0):
-        Stage3screen.draw()
-    if (logo_time > 3.0):
-        Stage4screen.draw()
-    delay(0.01)
-    logo_time += 0.01
-    CharacterWukung.draw()
+
     update_canvas()
 
 
