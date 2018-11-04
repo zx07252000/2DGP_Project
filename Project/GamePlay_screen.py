@@ -1,9 +1,9 @@
 import random
 import json
 import os
-import sys
+import math
 
-sys.path.insert(0,'C:\사용자\qaz04\Documents\GitHub\2DGP\1차 발표\Resource')
+
 from pico2d import *
 
 import game_framework
@@ -19,6 +19,7 @@ from Stage1_enemy_Chicken import Chicken
 from Stage1_enemy_Sword import Sword
 
 
+
 name = "GamePlay_screen"
 
 CharacterMeiMei=None
@@ -30,10 +31,11 @@ Stage2screen=None
 Stage3screen=None
 Stage4screen=None
 logo_time=0
+stagetimer=0
 
 def enter():
     global CharacterMeiMei,Stage1screen,Stage2screen,Stage3screen,Stage4screen,\
-        Cloud,Chicken,Sword
+        Cloud,Chicken,Sword,logo_time,stagetimer
     CharacterMeiMei = MeiMei()
     Stage1screen=Stage1()
     Stage2screen = Stage2()
@@ -43,7 +45,12 @@ def enter():
     Stage1_enemy_Chicken=Chicken()
     Stage1_enemy_Sword=Sword()
 
-    game_world.add_object(Stage1screen, 0)
+
+
+    print(stagetimer)
+    print(get_time())
+    if(get_time()-stagetimer<10.0):
+        game_world.add_object(Stage1screen, 0)
     game_world.add_object(CharacterMeiMei, 1)
     game_world.add_object(Stage1_enemy_Cloud, 2)
     game_world.add_object(Stage1_enemy_Chicken, 3)
@@ -74,6 +81,9 @@ def handle_events():
             CharacterMeiMei.handle_event(event)
 
 def update():
+
+    if (get_time() < 20.0 and get_time() > 10.0):
+        game_world.add_object(Stage2screen, 0)
     for game_object in game_world.all_objects():
         game_object.update()
 
