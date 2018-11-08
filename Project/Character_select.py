@@ -15,6 +15,7 @@ Choose_Wukung=None
 Not_Choose_Wukung=None
 
 Character_Change=0
+No_Choice=0
 MeiMei=1
 Wukung=2
 
@@ -65,17 +66,17 @@ def handle_events():
 
 
 def draw():
-    global change
+    global Character_Change
     clear_canvas()
     Character_Select_Screen.clip_draw(0,0,1100,812,512, 382)
 
-    if change==1:
+    if Character_Change==MeiMei:
         Choose_MeiMei.clip_draw(0,0,230,300,100, 382)
         Not_Choose_Wukung.clip_draw(0, 0, 230, 300, 900, 382)
-    if change==2:
+    if Character_Change==Wukung:
         Choose_Wukung.clip_draw(0,0,230,300,900, 382)
         Not_Choose_MeiMei.clip_draw(0, 0, 230, 300, 100, 382)
-    if change==0:
+    if Character_Change==No_Choice:
         Not_Choose_Wukung.clip_draw(0, 0, 230, 300, 900, 382)
         Not_Choose_MeiMei.clip_draw(0, 0, 230, 300, 100, 382)
     update_canvas()
