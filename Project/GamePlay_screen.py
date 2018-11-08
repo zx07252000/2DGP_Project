@@ -30,12 +30,12 @@ Stage1screen=None
 Stage2screen=None
 Stage3screen=None
 Stage4screen=None
-logo_time=0
-stagetimer=0
+
+
 
 def enter():
     global CharacterMeiMei,Stage1screen,Stage2screen,Stage3screen,Stage4screen,\
-        Cloud,Chicken,Sword,logo_time,stagetimer
+        Cloud,Chicken,Sword
     CharacterMeiMei = MeiMei()
     Stage1screen=Stage1()
     Stage2screen = Stage2()
@@ -77,7 +77,6 @@ def handle_events():
             CharacterMeiMei.handle_event(event)
 
 def update():
-
 
     for game_object in game_world.all_objects():
         game_object.update()

@@ -9,11 +9,8 @@ class Stage2:
     def __init__(self):
         self.image = load_image('Resource_Stage\\stage2.png')
         self.event_que = []
-
         self.x, self.y = 0, 382
-
         self.dir = 1
-
         self.velocity = 0
 
     def enter_IDLE(self):

@@ -16,7 +16,6 @@ key_event_table = {
     (SDL_KEYUP, SDLK_DOWN): DOWN_UP,
     (SDL_KEYDOWN, SDLK_SPACE): SPACE_E,
     (SDL_KEYDOWN, SDLK_DOWN): DOWN_DOWN
-
 }
 
 
