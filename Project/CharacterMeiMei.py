@@ -134,7 +134,7 @@ class MeiMei:
 
     def __init__(self):
         self.x, self.y = 70 , 70
-        self.image = load_image('Resource\\CharacterMeiMei.png')
+        self.image = load_image('Resource_Character\\CharacterMeiMei.png')
         self.dir = 1
         self.velocity = 0
         self.frame = 0

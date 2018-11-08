@@ -77,7 +77,7 @@ class Sword:
 
     def __init__(self):
         self.x, self.y = 70 , 70
-        self.image = load_image('Resource\\Stage1_enemy_Sword.png')
+        self.image = load_image('Resource_Monster\\Stage1_enemy_Sword.png')
         self.dir = 1
         self.velocity = 0
         self.frame = 0

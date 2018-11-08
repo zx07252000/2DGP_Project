@@ -6,7 +6,7 @@ class Ball:
 
     def __init__(self, x = 400, y = 300, move = 1,length=1,frame=1):
         if Ball.image == None:
-            Ball.image = load_image('Resource\\Ball_1.png')
+            Ball.image = load_image('Resource_Character\\Ball_1.png')
         self.x, self.y, self.velocity ,self.length,self.frame= x, y, move,length,frame
 
     def draw(self):

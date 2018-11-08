@@ -134,7 +134,7 @@ class Wukung:
 
     def __init__(self):
         self.x, self.y = 70 , 70
-        self.image = load_image('Resource\\CharacterWukung3.png')
+        self.image = load_image('Resource_Character\\CharacterWukung3.png')
         self.dir = 1
         self.velocity = 0
         self.frame = 0

@@ -17,11 +17,11 @@ change=0
 
 def enter():
     global image,MeiMei_R,MeiMei_L,Wukung_R,Wukung_L
-    image = load_image('Resource\\character select.png')
-    MeiMei_R= load_image('Resource\\MeiMei_R.png')
-    MeiMei_L= load_image('Resource\\MeiMei_L.png')
-    Wukung_R= load_image('Resource\\Wukung_R.png')
-    Wukung_L= load_image('Resource\\Wukung_L.png')
+    image = load_image('Resource_Screen\\character select.png')
+    MeiMei_R= load_image('Resource_Screen\\MeiMei_R.png')
+    MeiMei_L= load_image('Resource_Screen\\MeiMei_L.png')
+    Wukung_R= load_image('Resource_Screen\\Wukung_R.png')
+    Wukung_L= load_image('Resource_Screen\\Wukung_L.png')
     pass
 
 

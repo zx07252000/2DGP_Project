@@ -1,9 +1,7 @@
 import random
 import json
 import os
-import sys
 
-sys.path.insert(0,'C:\사용자\qaz04\Documents\GitHub\2DGP\1차 발표\Resource')
 from pico2d import *
 
 import game_framework

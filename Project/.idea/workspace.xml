@@ -2,8 +2,72 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="092014f4-c65d-48a5-8cb4-a7a01e50795e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.01 Project commit 1~6.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.04 Project commit 7~8.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.07 Project commit 9~10.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.11 Project commit 11~16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.13 Project commit 17~19.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.17 Project commit 19~21.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.18 Project commit 22.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.19 Project commit 23~24.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.22 Project commit 25~28.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.23 Project commit 29.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.24 Project commit 30~34.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.24 Project commit 35~38.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.26 Project commit 39~40.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.27 Project commit 41~42.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.30 Project commit 43~48.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.10.31 Project commit 49~51.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.11.02 Project commit 52~56.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Previous Commit/18.11.03 Project commit 57~58.PNG" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GamePlay_screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/GamePlay_screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CharacterMeiMei.py" beforeDir="false" afterPath="$PROJECT_DIR$/CharacterMeiMei.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CharacterWukung.py" beforeDir="false" afterPath="$PROJECT_DIR$/CharacterWukung.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Character_select.py" beforeDir="false" afterPath="$PROJECT_DIR$/Character_select.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GamePlay_screen2.py" beforeDir="false" afterPath="$PROJECT_DIR$/GamePlay_screen2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/A.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Ball_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/C.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/CharacterMeiMei.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/CharacterMeiMei3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/CharacterWukung.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/CharacterWukung3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Character_MeiMei3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/E.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/EXIT.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/EXIT_L.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/H.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/K.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Main_Screen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/MeiMei_L.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/MeiMei_R.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/N.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Option.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Option_L.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Stage1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Stage1_boss.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Stage1_enemy_Chicken.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Stage1_enemy_Cloud.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Stage1_enemy_Sword.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Stage2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Stage3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Stage4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/T.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Title_Logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Wukung_L.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/Wukung_R.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/character select.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resource/newgame.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage1_enemy_Chicken.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stage1_enemy_Chicken.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage1_enemy_Cloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stage1_enemy_Cloud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage1_enemy_Sword.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stage1_enemy_Sword.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage1screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stage1screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage2screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stage2screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage3screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stage3screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage4screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stage4screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Title_Logo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Title_Logo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ball.py" beforeDir="false" afterPath="$PROJECT_DIR$/ball.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,32 +115,33 @@
     <session id="-824861600">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="902" />
+          <entry key="py" value="978" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="902" />
+          <entry key="Python" value="978" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="png" value="8" />
-          <entry key="py" value="20" />
+          <entry key="py" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="8" />
-          <entry key="Python" value="20" />
+          <entry key="Python" value="38" />
         </counts>
       </usages-collector>
     </session>
@@ -84,36 +149,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CharacterWukung.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2964">
-              <caret line="159" column="35" selection-start-line="159" selection-start-column="35" selection-end-line="159" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main_Screen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+            <state relative-caret-position="380">
+              <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resource/CharacterWukung3.png">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Stage1_enemy_Chicken.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="418">
+              <caret line="82" column="41" lean-forward="true" selection-start-line="82" selection-start-column="41" selection-end-line="82" selection-end-column="49" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -122,13 +170,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GamePlay_screen2.py">
+        <entry file="file://$PROJECT_DIR$/Stage1_enemy_Cloud.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="608">
+              <caret line="82" column="49" selection-start-line="82" selection-start-column="49" selection-end-line="82" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stage1_enemy_Sword.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="598">
+              <caret line="79" column="49" selection-start-line="79" selection-start-column="49" selection-end-line="79" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -136,42 +190,48 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Stage1screen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+            <state relative-caret-position="171">
+              <caret line="9" column="39" lean-forward="true" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="45" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-                <marker date="1541176506982" expanded="true" signature="455:473" ph="..." />
+                <marker date="1541680334416" expanded="true" signature="461:479" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stage2screen.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stage3screen.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stage4screen.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GamePlay_screen.py">
+        <entry file="file://$PROJECT_DIR$/Title_Logo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="72" column="20" lean-forward="true" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game_world.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game_framework.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+            <state relative-caret-position="304">
+              <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -227,25 +287,25 @@
         <option value="$PROJECT_DIR$/Stage1_enemy_1.py" />
         <option value="$PROJECT_DIR$/Stage1_enemy_2.py" />
         <option value="$PROJECT_DIR$/game_world.py" />
+        <option value="$PROJECT_DIR$/GamePlay_screen.py" />
         <option value="$PROJECT_DIR$/ball.py" />
+        <option value="$PROJECT_DIR$/Character_select.py" />
         <option value="$PROJECT_DIR$/CharacterMeiMei.py" />
+        <option value="$PROJECT_DIR$/CharacterWukung.py" />
+        <option value="$PROJECT_DIR$/GamePlay_screen2.py" />
+        <option value="$PROJECT_DIR$/Main_Screen.py" />
+        <option value="$PROJECT_DIR$/Stage1_enemy_Chicken.py" />
+        <option value="$PROJECT_DIR$/Stage1_enemy_Cloud.py" />
+        <option value="$PROJECT_DIR$/Stage1_enemy_Sword.py" />
         <option value="$PROJECT_DIR$/Stage1screen.py" />
         <option value="$PROJECT_DIR$/Stage2screen.py" />
         <option value="$PROJECT_DIR$/Stage3screen.py" />
         <option value="$PROJECT_DIR$/Stage4screen.py" />
         <option value="$PROJECT_DIR$/Title_Logo.py" />
-        <option value="$PROJECT_DIR$/Main_Screen.py" />
-        <option value="$PROJECT_DIR$/Character_select.py" />
-        <option value="$PROJECT_DIR$/Stage1_enemy_Chicken.py" />
-        <option value="$PROJECT_DIR$/Stage1_enemy_Cloud.py" />
-        <option value="$PROJECT_DIR$/Stage1_enemy_Sword.py" />
-        <option value="$PROJECT_DIR$/GamePlay_screen2.py" />
-        <option value="$PROJECT_DIR$/CharacterWukung.py" />
-        <option value="$PROJECT_DIR$/GamePlay_screen.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds">
     <option name="x" value="830" />
     <option name="y" value="22" />
     <option name="width" value="1107" />
@@ -426,7 +486,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1332982" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13962065" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -492,45 +552,10 @@
     <entry file="file://$PROJECT_DIR$/CharacterMeiMei.png" />
     <entry file="file://$PROJECT_DIR$/character select.png" />
     <entry file="file://$PROJECT_DIR$/Character_MeiMei3.png" />
-    <entry file="file://$PROJECT_DIR$/Stage3screen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stage4screen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Title_Logo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="15" column="11" lean-forward="true" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ball.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="37" lean-forward="true" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/pico2d/pico2d.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6232">
           <caret line="339" selection-start-line="339" selection-end-line="339" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Chance Attack.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -539,41 +564,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Resource/MeiMei_L.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stage1_enemy_Cloud.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stage1_enemy_Sword.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stage2screen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Character_select.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="50" column="40" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CharacterMeiMei.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-646">
-          <caret line="14" column="36" lean-forward="true" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Resource/Character_MeiMei3.png">
       <provider selected="true" editor-type-id="images" />
@@ -587,61 +577,44 @@
     <entry file="file://$PROJECT_DIR$/Resource/CharacterWukung.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/CharacterWukung.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2964">
-          <caret line="159" column="35" selection-start-line="159" selection-start-column="35" selection-end-line="159" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Screen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Resource/CharacterWukung3.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Stage1_enemy_Chicken.py">
+    <entry file="file://$PROJECT_DIR$/ball.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="228">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chance Attack.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Character_select.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CharacterMeiMei.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35">
+          <caret line="136" column="41" lean-forward="true" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CharacterWukung.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="136" column="51" selection-start-line="136" selection-start-column="51" selection-end-line="136" selection-end-column="51" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GamePlay_screen2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stage1screen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1541176506982" expanded="true" signature="455:473" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game_world.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -652,16 +625,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Stage1_boss.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/game_world.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GamePlay_screen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="72" column="20" lean-forward="true" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="20" />
+        <state relative-caret-position="-782">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GamePlay_screen2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-896">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Screen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stage1_boss.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stage1_enemy_Chicken.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="82" column="41" lean-forward="true" selection-start-line="82" selection-start-column="41" selection-end-line="82" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stage1_enemy_Cloud.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="82" column="49" selection-start-line="82" selection-start-column="49" selection-end-line="82" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stage1_enemy_Sword.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="79" column="49" selection-start-line="79" selection-start-column="49" selection-end-line="79" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stage1screen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="39" lean-forward="true" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1541680334416" expanded="true" signature="461:479" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stage2screen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stage3screen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stage4screen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Title_Logo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
         </state>
       </provider>
     </entry>

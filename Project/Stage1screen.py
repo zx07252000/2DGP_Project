@@ -7,7 +7,7 @@ from Stage2screen import Stage2
 
 class Stage1:
     def __init__(self):
-        self.image=load_image('Resource\\stage1.png')
+        self.image=load_image('Resource_Stage\\stage1.png')
         self.event_que = []
 
         self.x, self.y = 0, 382

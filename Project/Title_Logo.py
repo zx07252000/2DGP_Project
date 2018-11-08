@@ -9,7 +9,7 @@ logo_time=0.0
 
 def enter():
     global image
-    image = load_image('Resource\\Title_Logo.png')
+    image = load_image('Resource_Screen\\Title_Logo.png')
     pass
 
 

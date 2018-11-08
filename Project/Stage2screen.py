@@ -7,7 +7,7 @@ from pico2d import *
 
 class Stage2:
     def __init__(self):
-        self.image = load_image('Resource\\stage2.png')
+        self.image = load_image('Resource_Stage\\stage2.png')
         self.event_que = []
 
         self.x, self.y = 0, 382

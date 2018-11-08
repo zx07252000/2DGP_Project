@@ -16,12 +16,12 @@ change=4
 def enter():
     global image,new,option,option_L,Exit,Exit_L
 
-    image=load_image('Resource\\Main_Screen.png')
-    new=load_image('Resource\\newgame.png')
-    option=load_image('Resource\\option.png')
-    option_L=load_image('Resource\\Option_L.png')
-    Exit=load_image('Resource\\Exit.png')
-    Exit_L = load_image('Resource\\Exit_L.png')
+    image=load_image('Resource_Screen\\Main_Screen.png')
+    new=load_image('Resource_Screen\\newgame.png')
+    option=load_image('Resource_Screen\\option.png')
+    option_L=load_image('Resource_Screen\\Option_L.png')
+    Exit=load_image('Resource_Screen\\Exit.png')
+    Exit_L = load_image('Resource_Screen\\Exit_L.png')
 
     pass
 
