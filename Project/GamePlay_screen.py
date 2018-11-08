@@ -46,11 +46,7 @@ def enter():
     Stage1_enemy_Sword=Sword()
 
 
-
-    print(stagetimer)
-    print(get_time())
-    if(get_time()-stagetimer<10.0):
-        game_world.add_object(Stage1screen, 0)
+    game_world.add_object(Stage1screen, 0)
     game_world.add_object(CharacterMeiMei, 1)
     game_world.add_object(Stage1_enemy_Cloud, 2)
     game_world.add_object(Stage1_enemy_Chicken, 3)
@@ -82,8 +78,7 @@ def handle_events():
 
 def update():
 
-    if (get_time() < 20.0 and get_time() > 10.0):
-        game_world.add_object(Stage2screen, 0)
+
     for game_object in game_world.all_objects():
         game_object.update()
 
