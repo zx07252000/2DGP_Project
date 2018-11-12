@@ -2,6 +2,25 @@ from pico2d import *
 from ball import Ball
 
 import game_world
+import random
+
+PIXEL_PER_METER = (10.0 / 2.0)
+
+RUN_SPEED_KMPH = 20.0
+
+RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
+
+RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
+
+RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+
+
+TIME_PER_ACTION = 0.5
+
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+
+FRAMES_PER_ACTION = 8
+
 
 # Boy Event
 RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP,SPACE_E,UP_DOWN,DOWN_DOWN,UP_UP,DOWN_UP = range(9)
@@ -25,23 +44,29 @@ class IdleState:
 
     @staticmethod
     def enter(MeiMei, event):
+        MeiMei.time = get_time()
         if event == RIGHT_DOWN:
-            MeiMei.velocity += 30
+            MeiMei.velocity += RUN_SPEED_PPS
         elif event == LEFT_DOWN:
-            MeiMei.velocity -= 30
-        elif event == RIGHT_UP:
-            MeiMei.velocity -= 30
-        elif event == LEFT_UP:
-            MeiMei.velocity += 30
-        elif event == DOWN_DOWN:
-            MeiMei.length -= 30
-        elif event == UP_DOWN:
-            MeiMei.length += 30
-        elif event == DOWN_UP:
-            MeiMei.length += 30
-        elif event == UP_UP:
-            MeiMei.length -= 30
+            MeiMei.velocity -= RUN_SPEED_PPS
 
+        elif event == RIGHT_UP:
+            MeiMei.velocity -= RUN_SPEED_PPS
+        elif event == LEFT_UP:
+            MeiMei.velocity += RUN_SPEED_PPS
+
+        elif event == DOWN_DOWN:
+            MeiMei.length -= RUN_SPEED_PPS
+        elif event == UP_DOWN:
+            MeiMei.length += RUN_SPEED_PPS
+
+        elif event == DOWN_UP:
+            MeiMei.length += RUN_SPEED_PPS
+        elif event == UP_UP:
+            MeiMei.length -= RUN_SPEED_PPS
+
+
+        MeiMei.time = get_time()
 
 
     @staticmethod
@@ -54,7 +79,7 @@ class IdleState:
     def do(MeiMei):
         MeiMei.frame = (MeiMei.frame + 1) % 8
         MeiMei.x = clamp(25, MeiMei.x, 1020 - 25)
-
+        MeiMei.time = get_time()
 
 
     @staticmethod
@@ -73,21 +98,26 @@ class RunState:
     @staticmethod
     def enter(MeiMei, event):
         if event == RIGHT_DOWN:
-            MeiMei.velocity += 30
+            MeiMei.velocity += RUN_SPEED_PPS
         elif event == LEFT_DOWN:
-            MeiMei.velocity -=30
+            MeiMei.velocity -=RUN_SPEED_PPS
+
         elif event == RIGHT_UP:
-            MeiMei.velocity -= 30
+            MeiMei.velocity -= RUN_SPEED_PPS
+        elif event == LEFT_UP:
+            MeiMei.velocity += RUN_SPEED_PPS
 
         elif event == DOWN_DOWN:
-            MeiMei.length -= 30
+            MeiMei.length -= RUN_SPEED_PPS
         elif event == UP_DOWN:
-            MeiMei.length += 30
-        elif event == DOWN_UP:
-            MeiMei.length += 30
-        elif event == UP_UP:
-            MeiMei.length -= 30
+            MeiMei.length += RUN_SPEED_PPS
 
+        elif event == DOWN_UP:
+            MeiMei.length += RUN_SPEED_PPS
+        elif event == UP_UP:
+            MeiMei.length -= RUN_SPEED_PPS
+
+        MeiMei.time = get_time()
         MeiMei.dir = MeiMei.velocity
 
     @staticmethod
@@ -104,6 +134,7 @@ class RunState:
         MeiMei.y += MeiMei.length
         MeiMei.x = clamp(25, MeiMei.x, 1020 - 25)
         MeiMei.y = clamp(25, MeiMei.y, 767 - 25)
+        MeiMei.time = get_time()
 
 
     @staticmethod
@@ -134,10 +165,12 @@ class MeiMei:
     def __init__(self):
         self.x, self.y = 70 , 70
         self.image = load_image('Resource_Character\\CharacterMeiMei.png')
+        self.font = load_font('Resource_Temporary\\ENCR10B.TTF', 16)
         self.dir = 1
         self.velocity = 0
         self.frame = 0
         self.timer = 0
+
         self.length=0
         self.event_que = []
         self.cur_state = IdleState
@@ -156,15 +189,17 @@ class MeiMei:
 
     def update(self):
         self.cur_state.do(self)
+
         if len(self.event_que) > 0:
             event = self.event_que.pop()
             self.cur_state.exit(self, event)
             self.cur_state = next_state_table[self.cur_state][event]
             self.cur_state.enter(self, event)
 
+
     def draw(self):
         self.cur_state.draw(self)
-
+        self.font.draw(self.x - 60, self.y + 50, '(Time:%3.2f)' % self.time, (255, 255, 0))
 
     def handle_event(self, event):
         if (event.type, event.key) in key_event_table:
