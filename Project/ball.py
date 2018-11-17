@@ -9,6 +9,11 @@ class Ball:
             Ball.image = load_image('Resource_Character\\Ball_1.png')
         self.x, self.y, self.velocity ,self.length,self.frame= x, y, move,length,frame
 
+    def get_bb(self):
+        # fill here
+        return self.x - 10, self.y - 15, self.x + 10, self.y + 15
+        #충돌처리
+
     def draw(self):
         self.image.clip_draw(self.frame * 100, 0, 16, 30, self.x, self.y)
 

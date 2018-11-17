@@ -87,6 +87,9 @@ class Sword:
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
 
+    def get_bb(self):
+        # fill here
+        return self.x - 20, self.y - 30, self.x + 20, self.y + 30
 
     def add_event(self, event):
         self.event_que.insert(0, event)
@@ -101,6 +104,7 @@ class Sword:
         pass
     def draw(self):
         self.cur_state.draw(self)
+        draw_rectangle(*self.get_bb())
         pass
 
     def handle_event(self, event):
