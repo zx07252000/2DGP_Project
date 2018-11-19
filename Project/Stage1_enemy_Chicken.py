@@ -10,7 +10,6 @@ class IdleState:
         Chicken.velocity-=1
         Chicken.x=1050
         Chicken.y =random.randint(100,700)
-
         pass
 
 
@@ -23,7 +22,6 @@ class IdleState:
         Chicken.frame = (Chicken.frame + 1) % 4
         Chicken.x = clamp(25, Chicken.x, 1020 - 25)
         Chicken.x+=Chicken.velocity
-
         pass
 
 
@@ -31,47 +29,10 @@ class IdleState:
     @staticmethod
     def draw(Chicken):
         if Chicken.dir == 1:
-
             Chicken.image.clip_draw(Chicken.frame*50-2 , 50, 45, 40, Chicken.x, Chicken.y)
 
         else:
-
             Chicken.image.clip_draw(Chicken.frame*50-2, 50, 45, 40, Chicken.x, Chicken.y)
-            pass
-
-
-class RunState:
-
-    @staticmethod
-    def enter(Chicken, event):
-
-        Chicken.dir = Chicken.velocity
-        pass
-
-    @staticmethod
-    def exit(Chicken, event):
-
-        pass
-
-    @staticmethod
-    def do(Chicken):
-        Chicken.frame = (Chicken.frame + 1) % 4
-        Chicken.timer -= 1
-        Chicken.x +=Chicken.velocity
-        Chicken.y += Chicken.length
-        Chicken.x = clamp(25, Chicken.x, 1020 - 25)
-        Chicken.y = clamp(25, Chicken.y, 767 - 25)
-        pass
-
-    @staticmethod
-    def draw(Chicken):
-        if Chicken.velocity == 1:
-
-            Chicken.image.clip_draw(Chicken.frame*100, 0, 60, 60, Chicken.x, Chicken.y)
-
-        else:
-
-            Chicken.image.clip_draw(Chicken.frame*100, 0, 60, 60, Chicken.x, Chicken.y)
             pass
 
 
@@ -102,7 +63,7 @@ class Chicken:
         if len(self.event_que) > 0:
             event = self.event_que.pop()
             self.cur_state.exit(self, event)
-            self.cur_state = next_state_table[self.cur_state][event]
+
             self.cur_state.enter(self, event)
         pass
     def draw(self):
@@ -110,8 +71,3 @@ class Chicken:
         draw_rectangle(*self.get_bb())
         pass
 
-    def handle_event(self, event):
-        if (event.type, event.key) in key_event_table:
-            key_event = key_event_table[(event.type, event.key)]
-            self.add_event(key_event)
-        pass

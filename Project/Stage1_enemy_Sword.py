@@ -36,43 +36,6 @@ class IdleState:
             Sword.image.clip_draw(Sword.frame*50, 0, 40, 60, Sword.x, Sword.y)
             pass
 
-
-class RunState:
-
-    @staticmethod
-    def enter(Sword, event):
-
-        Sword.dir = Sword.velocity
-        pass
-
-    @staticmethod
-    def exit(Sword, event):
-
-        pass
-
-    @staticmethod
-    def do(Sword):
-        Sword.frame = (Sword.frame + 1) % 8
-        Sword.timer -= 1
-        Sword.x +=Sword.velocity
-        Sword.y += Sword.length
-        Sword.x = clamp(25, Sword.x, 1020 - 25)
-        Sword.y = clamp(25, Sword.y, 767 - 25)
-        pass
-
-    @staticmethod
-    def draw(Sword):
-        if Sword.velocity == 1:
-
-            Sword.image.clip_draw(260, 0, 60, 60, Sword.x, Sword.y)
-
-        else:
-
-            Sword.image.clip_draw(260, 0, 60, 60, Sword.x, Sword.y)
-            pass
-
-
-
 class Sword:
 
     def __init__(self):
@@ -99,16 +62,9 @@ class Sword:
         if len(self.event_que) > 0:
             event = self.event_que.pop()
             self.cur_state.exit(self, event)
-            self.cur_state = next_state_table[self.cur_state][event]
             self.cur_state.enter(self, event)
         pass
     def draw(self):
         self.cur_state.draw(self)
         draw_rectangle(*self.get_bb())
-        pass
-
-    def handle_event(self, event):
-        if (event.type, event.key) in key_event_table:
-            key_event = key_event_table[(event.type, event.key)]
-            self.add_event(key_event)
         pass

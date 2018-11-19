@@ -28,4 +28,4 @@ class Ball:
             game_world.remove_object(self)
 
     def stop(self):
-        self.fall_speed = 0
+        self.Throw_Speed = 0

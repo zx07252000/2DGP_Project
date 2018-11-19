@@ -180,8 +180,10 @@ class MeiMei:
     def fire_ball(self):
         ball = Ball(self.x, self.y, self.dir * 3)
         game_world.add_object(ball, 1)
-        pass
 
+    def get_bb(self):
+        # fill here
+        return self.x - 50, self.y - 50, self.x + 50, self.y + 50
 
 
     def add_event(self, event):

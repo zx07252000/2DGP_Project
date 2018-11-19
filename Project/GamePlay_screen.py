@@ -47,7 +47,7 @@ def collide(a, b):
     return True
 
 def enter():
-    global CharacterMeiMei,Stage1screen,Stage2screen,Stage3screen,Stage4screen
+    global CharacterMeiMei,Stage1screen,Stage2screen,Stage3screen,Stage4screen,Stage1_enemy_Cloud
 
     CharacterMeiMei = MeiMei()
     Stage1screen=Stage1()
@@ -55,23 +55,26 @@ def enter():
     Stage3screen=Stage3()
     Stage4screen = Stage4()
     global balls
+    balls=[Ball() for i in range(10)]
     game_world.add_objects(balls, 1)
 
-    global Stage1_enemy_Cloud
-    Stage1_enemy_Cloud=Cloud()
-    game_world.add_object(Stage1_enemy_Cloud, 1)
 
+
+
+    Stage1_enemy_Cloud=[Cloud(i) for i in range(10)]
+    Stage1_enemy_Cloud = [Cloud(i) for i in range(10)]
+    Stage1_enemy_Cloud = [Cloud(i) for i in range(10)]
+
+    global Stage1_enemy_Chicken
     Stage1_enemy_Chicken=Chicken()
-    Stage1_enemy_Sword=Sword()
+    game_world.add_object(Stage1_enemy_Chicken, 1)
 
+    global Stage1_enemy_Sword
+    Stage1_enemy_Sword=Sword()
+    game_world.add_object(Stage1_enemy_Sword, 1)
 
     game_world.add_object(Stage1screen, 0)
     game_world.add_object(CharacterMeiMei, 1)
-
-    game_world.add_object(Stage1_enemy_Chicken, 1)
-    game_world.add_object(Stage1_enemy_Sword, 1)
-
-
 
 
 def exit():
@@ -101,7 +104,16 @@ def update():
         game_object.update()
     for ball in balls:
         if collide(Stage1_enemy_Cloud, ball):
-            ball.stop()
+            balls.remove(ball)
+            game_world.remove_object(ball)
+    for ball in balls:
+        if collide(Stage1_enemy_Chicken, ball):
+            balls.remove(ball)
+            game_world.remove_object(ball)
+    for ball in balls:
+        if collide(Stage1_enemy_Sword, ball):
+            balls.remove(ball)
+            game_world.remove_object(ball)
 
 
 def draw():
