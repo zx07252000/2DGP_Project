@@ -8,6 +8,7 @@ from pico2d import *
 
 import game_framework
 import game_world
+import Stage_Clear
 
 from CharacterMeiMei import *
 from Stage1screen import Stage1
@@ -28,6 +29,9 @@ Stage1_enemy_Cloud=[]
 Stage1_enemy_Chicken=[]
 Stage1_enemy_Sword=[]
 ball=None
+
+Stage1_Clear_Score=0
+eraser=0
 
 Stage1screen=None
 Stage2screen=None
@@ -70,6 +74,8 @@ def enter():
     game_world.add_object(Stage1screen, 0)
     game_world.add_object(CharacterMeiMei, 1)
 
+    if Stage1_Clear_Score == 2:
+        game_world.add_object(Stage2screen, 0)
 
 def exit():
     game_world.clear()
@@ -93,6 +99,8 @@ def handle_events():
             CharacterMeiMei.handle_event(event)
 
 def update():
+    global Stage1_Clear_Score,eraser
+
     for game_object in game_world.all_objects():
         game_object.update()
     for enemy in Stage1_enemy_Chicken:
@@ -102,6 +110,7 @@ def update():
                 ball_list.remove(ball)
                 game_world.remove_object(enemy)
                 game_world.remove_object(ball)
+                Stage1_Clear_Score = Stage1_Clear_Score + 1
 
     for enemy in Stage1_enemy_Cloud:
         for ball in ball_list:
@@ -110,6 +119,7 @@ def update():
                 ball_list.remove(ball)
                 game_world.remove_object(enemy)
                 game_world.remove_object(ball)
+                Stage1_Clear_Score = Stage1_Clear_Score + 1
 
     for enemy in Stage1_enemy_Sword:
         for ball in ball_list:
@@ -118,6 +128,27 @@ def update():
                 ball_list.remove(ball)
                 game_world.remove_object(enemy)
                 game_world.remove_object(ball)
+                Stage1_Clear_Score=Stage1_Clear_Score+1
+
+    for enemy in Stage1_enemy_Sword:
+        if Stage1_Clear_Score==2:
+            game_world.remove_object(enemy)
+
+    for enemy in Stage1_enemy_Cloud:
+        if Stage1_Clear_Score == 2:
+            game_world.remove_object(enemy)
+
+    for enemy in Stage1_enemy_Chicken:
+        if Stage1_Clear_Score == 2:
+            game_world.remove_object(enemy)
+            eraser=1
+
+    if eraser==1:
+        game_framework.change_state(Stage_Clear)
+
+
+
+
 
 def draw():
     clear_canvas()
