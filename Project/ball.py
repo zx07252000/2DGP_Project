@@ -14,7 +14,6 @@ class Ball:
         self.Throw_Speed=300
 
     def get_bb(self):
-        # fill here
         return self.x - 10, self.y - 15, self.x + 10, self.y + 15
         #충돌처리
 
