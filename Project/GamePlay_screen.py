@@ -9,7 +9,7 @@ from pico2d import *
 import game_framework
 import game_world
 
-from CharacterMeiMei import MeiMei
+from CharacterMeiMei import *
 from Stage1screen import Stage1
 from Stage2screen import Stage2
 from Stage3screen import Stage3
@@ -25,6 +25,10 @@ name = "GamePlay_screen"
 
 CharacterMeiMei=None
 Stage1_enemy_Cloud=[]
+Stage1_enemy_Chicken=[]
+Stage1_enemy_Sword=[]
+ball=None
+
 Stage1screen=None
 Stage2screen=None
 Stage3screen=None
@@ -45,7 +49,8 @@ def collide(a, b):
     return True
 
 def enter():
-    global CharacterMeiMei,Stage1screen,Stage2screen,Stage3screen,Stage4screen,Stage1_enemy_Cloud
+    global CharacterMeiMei,Stage1screen,Stage2screen,Stage3screen,Stage4screen,\
+        Stage1_enemy_Cloud,Stage1_enemy_Chicken,Stage1_enemy_Sword,ball
 
     CharacterMeiMei = MeiMei()
     Stage1screen=Stage1()
@@ -53,6 +58,11 @@ def enter():
     Stage3screen=Stage3()
     Stage4screen = Stage4()
 
+    Stage1_enemy_Chicken = [Chicken(i) for i in range(10)]
+    game_world.add_objects(Stage1_enemy_Chicken, 1)
+
+    Stage1_enemy_Sword = [Sword(i) for i in range(10)]
+    game_world.add_objects(Stage1_enemy_Sword, 1)
 
     Stage1_enemy_Cloud=[Cloud(i) for i in range(10)]
     game_world.add_objects( Stage1_enemy_Cloud, 1)
@@ -85,10 +95,29 @@ def handle_events():
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
+    for enemy in Stage1_enemy_Chicken:
+        for ball in ball_list:
+            if collide(enemy,ball):
+                Stage1_enemy_Chicken.remove(enemy)
+                ball_list.remove(ball)
+                game_world.remove_object(enemy)
+                game_world.remove_object(ball)
 
+    for enemy in Stage1_enemy_Cloud:
+        for ball in ball_list:
+            if collide(enemy, ball):
+                Stage1_enemy_Cloud.remove(enemy)
+                ball_list.remove(ball)
+                game_world.remove_object(enemy)
+                game_world.remove_object(ball)
 
-
-
+    for enemy in Stage1_enemy_Sword:
+        for ball in ball_list:
+            if collide(enemy, ball):
+                Stage1_enemy_Sword. remove(enemy)
+                ball_list.remove(ball)
+                game_world.remove_object(enemy)
+                game_world.remove_object(ball)
 
 def draw():
     clear_canvas()

@@ -19,7 +19,7 @@ class Ball:
 
     def draw(self):
         self.image.clip_draw(self.frame * 100, 0, 16, 30, self.x, self.y)
-        draw_rectangle(*self.get_bb())
+
     def update(self):
         self.x += self.Throw_Speed*game_framework.frame_time
 

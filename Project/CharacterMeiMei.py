@@ -38,7 +38,7 @@ key_event_table = {
 }
 
 
-# Boy States
+ball_list=[]
 
 class IdleState:
 
@@ -180,6 +180,7 @@ class MeiMei:
     def fire_ball(self):
         ball = Ball(self.x, self.y, self.dir * 3)
         game_world.add_object(ball, 1)
+        ball_list.append(ball)
 
     def get_bb(self):
         # fill here

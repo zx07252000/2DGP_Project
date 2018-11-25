@@ -1,73 +1,73 @@
 from pico2d import *
+import game_framework
 import game_world
 import random
 
-class IdleState:
+PIXEL_PER_METER = (5.0 / 2.0)
 
-    @staticmethod
-    def enter(Chicken, event):
+RUN_SPEED_KMPH = 20.0
 
-        Chicken.velocity-=1
-        Chicken.x=1050
-        Chicken.y =random.randint(100,700)
-        pass
+RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 
+RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 
-    @staticmethod
-    def exit(Chicken, event):
-        pass
+RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
-    @staticmethod
-    def do(Chicken):
-        Chicken.frame = (Chicken.frame + 1) % 4
-        Chicken.x = clamp(25, Chicken.x, 1020 - 25)
-        Chicken.x+=Chicken.velocity
-        pass
+TIME_PER_ACTION = 0.5
 
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 
-
-    @staticmethod
-    def draw(Chicken):
-        if Chicken.dir == 1:
-            Chicken.image.clip_draw(Chicken.frame*50-2 , 50, 45, 40, Chicken.x, Chicken.y)
-
-        else:
-            Chicken.image.clip_draw(Chicken.frame*50-2, 50, 45, 40, Chicken.x, Chicken.y)
-            pass
-
-
+FRAMES_PER_ACTION = 8
 
 class Chicken:
 
-    def __init__(self):
-        self.x, self.y = 70 , 70
+
+    def __init__(self, i):
+        self.x, self.y = 1000+200*i , random.randint(100,700)
         self.image = load_image('Resource_Monster\\Stage1_enemy_Chicken.png')
         self.dir = 1
-        self.velocity = 0
+        self.velocity = random.randint(-10,-1)
         self.frame = 0
-        self.timer = 0
-        self.length=0
-        self.event_que = []
-        self.cur_state = IdleState
-        self.cur_state.enter(self, None)
+        self.timer = get_time()
+        self.length=random.randint(-10,10)
+        self.length_count=0
+
+
+
 
     def get_bb(self):
-        # fill here
         return self.x - 20, self.y - 20, self.x + 20, self.y + 20
+
+    def update(self):
+        pass
+
+
 
     def add_event(self, event):
         self.event_que.insert(0, event)
 
     def update(self):
-        self.cur_state.do(self)
-        if len(self.event_que) > 0:
-            event = self.event_que.pop()
-            self.cur_state.exit(self, event)
+        self.frame = (self.frame + 1) % 4
 
-            self.cur_state.enter(self, event)
-        pass
+        self.x = clamp(25, self.x, 5000 - 25)
+        self.y=clamp(25,self.y,767-25)
+
+        if self.x<50:
+            self.x=1000
+            self.y=random.randint(0,900)
+        # 끝지점에 도달했을때 좌표 초기화
+
+        self.x -= RUN_SPEED_PPS
+        # 이동 값
+
+        if self.timer%4>2:
+            self.y -= self.length
+        else:
+            self.y += self.length
+        # y축 랜덤 이동
+
     def draw(self):
-        self.cur_state.draw(self)
+        self.image.clip_draw( self.frame * 50 - 2, 50, 45, 40,  self.x,  self.y)
         draw_rectangle(*self.get_bb())
+        print (self.x)
         pass
-
