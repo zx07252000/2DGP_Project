@@ -59,7 +59,7 @@ class Sword:
         self.x -= RUN_SPEED_PPS
         # 이동 값
 
-        if self.timer%4>2:
+        if self.timer%3>2:
             self.y -= self.length
         else:
             self.y += self.length

@@ -112,14 +112,12 @@ def update():
                 game_world.remove_object(ball)
                 Stage1_Clear_Score = Stage1_Clear_Score + 1
 
-    for enemy in Stage1_enemy_Cloud:
-        for ball in ball_list:
-            if collide(enemy, ball):
+    for enemy in Stage1_enemy_Cloud :
+            if collide(enemy, CharacterMeiMei):
                 Stage1_enemy_Cloud.remove(enemy)
-                ball_list.remove(ball)
                 game_world.remove_object(enemy)
-                game_world.remove_object(ball)
-                Stage1_Clear_Score = Stage1_Clear_Score + 1
+                game_framework.change_state(Stage_Clear)
+
 
     for enemy in Stage1_enemy_Sword:
         for ball in ball_list:
@@ -131,15 +129,24 @@ def update():
                 Stage1_Clear_Score=Stage1_Clear_Score+1
 
     for enemy in Stage1_enemy_Sword:
-        if Stage1_Clear_Score==2:
+        for ball in ball_list:
+            if collide(enemy, ball):
+                Stage1_enemy_Sword.remove(enemy)
+                ball_list.remove(ball)
+                game_world.remove_object(enemy)
+                game_world.remove_object(ball)
+                Stage1_Clear_Score = Stage1_Clear_Score + 1
+
+    for enemy in Stage1_enemy_Sword:
+        if Stage1_Clear_Score==20:
             game_world.remove_object(enemy)
 
     for enemy in Stage1_enemy_Cloud:
-        if Stage1_Clear_Score == 2:
+        if Stage1_Clear_Score == 20:
             game_world.remove_object(enemy)
 
     for enemy in Stage1_enemy_Chicken:
-        if Stage1_Clear_Score == 2:
+        if Stage1_Clear_Score == 20:
             game_world.remove_object(enemy)
             eraser=1
 
