@@ -176,11 +176,17 @@ class MeiMei:
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
 
+        self.ball_sound=load_wav('Resource_Bgm\\Ball_Sound.wav')
+        self.ball_sound.set_volume(32)
+
+    def Ball_Attack(self):
+        self.ball_sound.play()
 
     def fire_ball(self):
         ball = Ball(self.x, self.y, self.dir * 3)
         game_world.add_object(ball, 1)
         ball_list.append(ball)
+        self.Ball_Attack()
 
     def get_bb(self):
         # fill here
