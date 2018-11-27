@@ -150,15 +150,15 @@ def update():
                 Stage1_Clear_Score = Stage1_Clear_Score + 1
 
     for enemy in Stage1_enemy_Sword:
-        if Stage1_Clear_Score==20:
+        if Stage1_Clear_Score==2:
             game_world.remove_object(enemy)
 
     for enemy in Stage1_enemy_Cloud:
-        if Stage1_Clear_Score == 20:
+        if Stage1_Clear_Score == 2:
             game_world.remove_object(enemy)
 
     for enemy in Stage1_enemy_Chicken:
-        if Stage1_Clear_Score == 20:
+        if Stage1_Clear_Score == 2:
             game_world.remove_object(enemy)
             eraser=1
 
