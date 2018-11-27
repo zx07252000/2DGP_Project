@@ -11,8 +11,7 @@ logo_time=0.0
 def enter():
     global image
 
-    image=load_image('Resource_Screen\\Stage_Clear.png')
-
+    image=load_image('Resource_Screen\\Game_Over.png')
 
     pass
 

@@ -9,6 +9,7 @@ from pico2d import *
 import game_framework
 import game_world
 import Stage_Clear
+import Game_Over
 
 from CharacterMeiMei import *
 from Stage1screen import Stage1
@@ -112,17 +113,28 @@ def update():
                 game_world.remove_object(ball)
                 Stage1_Clear_Score = Stage1_Clear_Score + 1
 
-    for enemy in Stage1_enemy_Cloud :
+    for enemy in Stage1_enemy_Cloud  :
             if collide(enemy, CharacterMeiMei):
                 Stage1_enemy_Cloud.remove(enemy)
                 game_world.remove_object(enemy)
-                game_framework.change_state(Stage_Clear)
+                game_framework.change_state(Game_Over)
 
+    for enemy in Stage1_enemy_Sword :
+            if collide(enemy, CharacterMeiMei):
+                Stage1_enemy_Sword.remove(enemy)
+                game_world.remove_object(enemy)
+                game_framework.change_state(Game_Over)
 
-    for enemy in Stage1_enemy_Sword:
+    for enemy in Stage1_enemy_Chicken :
+            if collide(enemy, CharacterMeiMei):
+                Stage1_enemy_Chicken.remove(enemy)
+                game_world.remove_object(enemy)
+                game_framework.change_state(Game_Over)
+
+    for enemy in Stage1_enemy_Cloud:
         for ball in ball_list:
             if collide(enemy, ball):
-                Stage1_enemy_Sword. remove(enemy)
+                Stage1_enemy_Cloud. remove(enemy)
                 ball_list.remove(ball)
                 game_world.remove_object(enemy)
                 game_world.remove_object(ball)
