@@ -67,5 +67,5 @@ class Sword:
     def draw(self):
         self.image.clip_draw(self.frame * 50, 0, 40, 60, self.x, self.y)
         draw_rectangle(*self.get_bb())
-        print (self.x)
+
         pass

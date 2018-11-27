@@ -16,6 +16,7 @@ from CharacterMeiMei import *
 from Stage1screen_HP_100 import Stage1_HP_100
 from Stage1screen_HP_70 import Stage1_HP_70
 from Stage1screen_HP_30 import Stage1_HP_30
+
 from Stage2screen import Stage2
 from Stage3screen import Stage3
 from Stage4screen import Stage4
@@ -23,6 +24,8 @@ from ball import Ball
 from Stage1_enemy_Cloud import Cloud
 from Stage1_enemy_Chicken import Chicken
 from Stage1_enemy_Sword import Sword
+
+from Stage1_boss import Boss1
 
 
 
@@ -32,12 +35,15 @@ CharacterMeiMei=None
 Stage1_enemy_Cloud=[]
 Stage1_enemy_Chicken=[]
 Stage1_enemy_Sword=[]
+Stage1_boss=None
+
 #Character_State=None
-ball=None
+Ball=None
 
 Stage1_Clear_Score=0
 Game_Over_State=0
 eraser=0
+Boss_Hp=50
 
 Stage1screen=None
 Stage2screen=None
@@ -60,17 +66,18 @@ def collide(a, b):
 
 def enter():
     global CharacterMeiMei,Stage1screen_HP_100,Stage1screen_HP_70,Stage1screen_HP_30,Stage2screen,Stage3screen,Stage4screen,\
-        Stage1_enemy_Cloud,Stage1_enemy_Chicken,Stage1_enemy_Sword,Character_State
+        Stage1_enemy_Cloud,Stage1_enemy_Chicken,Stage1_enemy_Sword,Character_State,Ball,Stage1_boss
 
     CharacterMeiMei = MeiMei()
     Stage1screen_HP_100=Stage1_HP_100()
     Stage1screen_HP_70=Stage1_HP_70()
     Stage1screen_HP_30=Stage1_HP_30()
+    Ball=ball_list
+    Stage1_boss=Boss1()
 
     Stage2screen = Stage2()
     Stage3screen=Stage3()
     Stage4screen = Stage4()
-    #Character_State=State()
 
     Stage1_enemy_Chicken = [Chicken(i) for i in range(10)]
     game_world.add_objects(Stage1_enemy_Chicken, 1)
@@ -80,6 +87,7 @@ def enter():
 
     Stage1_enemy_Cloud=[Cloud(i) for i in range(10)]
     game_world.add_objects( Stage1_enemy_Cloud, 1)
+
 
 
     game_world.add_object(Stage1screen_HP_100, 0)
@@ -112,7 +120,7 @@ def handle_events():
             CharacterMeiMei.handle_event(event)
 
 def update():
-    global Stage1_Clear_Score,eraser,Game_Over_State
+    global Stage1_Clear_Score,eraser,Game_Over_State,Boss_Hp
 
     for game_object in game_world.all_objects():
         game_object.update()
@@ -123,7 +131,7 @@ def update():
                 ball_list.remove(ball)
                 game_world.remove_object(enemy)
                 game_world.remove_object(ball)
-                Stage1_Clear_Score = Stage1_Clear_Score + 1
+                Stage1_Clear_Score += 1
     for enemy in Stage1_enemy_Cloud:
         for ball in ball_list:
             if collide(enemy, ball):
@@ -131,7 +139,7 @@ def update():
                 ball_list.remove(ball)
                 game_world.remove_object(enemy)
                 game_world.remove_object(ball)
-                Stage1_Clear_Score=Stage1_Clear_Score+1
+                Stage1_Clear_Score += 1
 
     for enemy in Stage1_enemy_Sword:
         for ball in ball_list:
@@ -140,7 +148,18 @@ def update():
                 ball_list.remove(ball)
                 game_world.remove_object(enemy)
                 game_world.remove_object(ball)
-                Stage1_Clear_Score = Stage1_Clear_Score + 1
+                Stage1_Clear_Score+=1
+
+
+        for ball in ball_list:
+            if collide(Stage1_boss, ball):
+                game_world.remove_object(ball)
+                ball_list.remove(ball)
+                Boss_Hp -= 1
+            if Boss_Hp==0:
+                Stage1_boss.remove(Stage1_boss)
+                game_world.remove_object(Stage1_boss)
+                game_framework.change_state(Stage_Clear)
 
 
 
@@ -163,6 +182,7 @@ def update():
             game_world.remove_object(enemy)
             Game_Over_State=Game_Over_State+1
 
+
     if Game_Over_State == 1:
         game_world.remove_object(Stage1screen_HP_100)
         game_world.add_object(Stage1screen_HP_70,0)
@@ -177,20 +197,21 @@ def update():
         game_framework.change_state(Game_Over)
 
     for enemy in Stage1_enemy_Sword:
-        if Stage1_Clear_Score==20:
+        if Stage1_Clear_Score==29:
             game_world.remove_object(enemy)
 
     for enemy in Stage1_enemy_Cloud:
-        if Stage1_Clear_Score == 20:
+        if Stage1_Clear_Score == 29:
             game_world.remove_object(enemy)
 
     for enemy in Stage1_enemy_Chicken:
-        if Stage1_Clear_Score == 20:
+        if Stage1_Clear_Score == 29:
             game_world.remove_object(enemy)
-            eraser=1
 
-    if eraser==1:
-        game_framework.change_state(Stage_Clear)
+    if Stage1_Clear_Score==0:
+        game_world.add_object(Stage1_boss, 1)
+        Stage1_Clear_Score=Stage1_Clear_Score+1
+
 
 
 
@@ -200,6 +221,7 @@ def draw():
     clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()
+    print( Stage1_Clear_Score )
     update_canvas()
 
 

@@ -69,5 +69,5 @@ class Chicken:
     def draw(self):
         self.image.clip_draw( self.frame * 50 - 2, 50, 45, 40,  self.x,  self.y)
         draw_rectangle(*self.get_bb())
-        print (self.x)
+
         pass
