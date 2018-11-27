@@ -2,8 +2,7 @@ from pico2d import *
 from ball import Ball
 
 import game_world
-
-# Boy Event
+import random
 
 PIXEL_PER_METER = (10.0 / 2.0)
 
@@ -23,6 +22,7 @@ ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 8
 
 
+# Boy Event
 RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP,SPACE_E,UP_DOWN,DOWN_DOWN,UP_UP,DOWN_UP = range(9)
 
 key_event_table = {
@@ -35,16 +35,16 @@ key_event_table = {
     (SDL_KEYUP, SDLK_DOWN): DOWN_UP,
     (SDL_KEYDOWN, SDLK_SPACE): SPACE_E,
     (SDL_KEYDOWN, SDLK_DOWN): DOWN_DOWN
-
 }
 
 
-# Boy States
+ball_list=[]
 
 class IdleState:
 
     @staticmethod
     def enter(Wukung, event):
+        Wukung.time = get_time()
         if event == RIGHT_DOWN:
             Wukung.velocity += RUN_SPEED_PPS
         elif event == LEFT_DOWN:
@@ -66,6 +66,8 @@ class IdleState:
             Wukung.length -= RUN_SPEED_PPS
 
 
+        Wukung.time = get_time()
+
 
     @staticmethod
     def exit(Wukung, event):
@@ -77,7 +79,7 @@ class IdleState:
     def do(Wukung):
         Wukung.frame = (Wukung.frame + 1) % 8
         Wukung.x = clamp(25, Wukung.x, 1020 - 25)
-
+        Wukung.time = get_time()
 
 
     @staticmethod
@@ -98,7 +100,7 @@ class RunState:
         if event == RIGHT_DOWN:
             Wukung.velocity += RUN_SPEED_PPS
         elif event == LEFT_DOWN:
-            Wukung .velocity -=RUN_SPEED_PPS
+            Wukung.velocity -=RUN_SPEED_PPS
 
         elif event == RIGHT_UP:
             Wukung.velocity -= RUN_SPEED_PPS
@@ -115,6 +117,7 @@ class RunState:
         elif event == UP_UP:
             Wukung.length -= RUN_SPEED_PPS
 
+        Wukung.time = get_time()
         Wukung.dir = Wukung.velocity
 
     @staticmethod
@@ -131,6 +134,7 @@ class RunState:
         Wukung.y += Wukung.length
         Wukung.x = clamp(25, Wukung.x, 1020 - 25)
         Wukung.y = clamp(25, Wukung.y, 767 - 25)
+        Wukung.time = get_time()
 
 
     @staticmethod
@@ -166,17 +170,27 @@ class Wukung:
         self.velocity = 0
         self.frame = 0
         self.timer = 0
+
         self.length=0
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
 
+        self.ball_sound=load_wav('Resource_Bgm\\Ball_Sound.wav')
+        self.ball_sound.set_volume(32)
+
+    def Ball_Attack(self):
+        self.ball_sound.play()
 
     def fire_ball(self):
         ball = Ball(self.x, self.y, self.dir * 3)
         game_world.add_object(ball, 1)
-        pass
+        ball_list.append(ball)
+        self.Ball_Attack()
 
+    def get_bb(self):
+        # fill here
+        return self.x - 50, self.y - 50, self.x + 50, self.y + 50
 
 
     def add_event(self, event):
@@ -184,15 +198,17 @@ class Wukung:
 
     def update(self):
         self.cur_state.do(self)
+
         if len(self.event_que) > 0:
             event = self.event_que.pop()
             self.cur_state.exit(self, event)
             self.cur_state = next_state_table[self.cur_state][event]
             self.cur_state.enter(self, event)
 
+
     def draw(self):
         self.cur_state.draw(self)
-        self.font.draw(self.x - 60, self.y + 50, '(Time:%3.2f)' % get_time(), (255, 255, 0))
+        self.font.draw(self.x - 60, self.y + 50, '(Time:%3.2f)' % self.time, (255, 255, 0))
 
     def handle_event(self, event):
         if (event.type, event.key) in key_event_table:

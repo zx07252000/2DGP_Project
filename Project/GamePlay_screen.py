@@ -13,7 +13,9 @@ import Game_Over
 
 #from Character_State import State
 from CharacterMeiMei import *
-from Stage1screen import Stage1
+from Stage1screen_HP_100 import Stage1_HP_100
+from Stage1screen_HP_70 import Stage1_HP_70
+from Stage1screen_HP_30 import Stage1_HP_30
 from Stage2screen import Stage2
 from Stage3screen import Stage3
 from Stage4screen import Stage4
@@ -34,6 +36,7 @@ Stage1_enemy_Sword=[]
 ball=None
 
 Stage1_Clear_Score=0
+Game_Over_State=0
 eraser=0
 
 Stage1screen=None
@@ -56,11 +59,14 @@ def collide(a, b):
     return True
 
 def enter():
-    global CharacterMeiMei,Stage1screen,Stage2screen,Stage3screen,Stage4screen,\
+    global CharacterMeiMei,Stage1screen_HP_100,Stage1screen_HP_70,Stage1screen_HP_30,Stage2screen,Stage3screen,Stage4screen,\
         Stage1_enemy_Cloud,Stage1_enemy_Chicken,Stage1_enemy_Sword,Character_State
 
     CharacterMeiMei = MeiMei()
-    Stage1screen=Stage1()
+    Stage1screen_HP_100=Stage1_HP_100()
+    Stage1screen_HP_70=Stage1_HP_70()
+    Stage1screen_HP_30=Stage1_HP_30()
+
     Stage2screen = Stage2()
     Stage3screen=Stage3()
     Stage4screen = Stage4()
@@ -75,7 +81,9 @@ def enter():
     Stage1_enemy_Cloud=[Cloud(i) for i in range(10)]
     game_world.add_objects( Stage1_enemy_Cloud, 1)
 
-    game_world.add_object(Stage1screen, 0)
+
+    game_world.add_object(Stage1screen_HP_100, 0)
+
     game_world.add_object(CharacterMeiMei, 1)
     # game_world.add_object(Character_State, 0)
 
@@ -104,7 +112,7 @@ def handle_events():
             CharacterMeiMei.handle_event(event)
 
 def update():
-    global Stage1_Clear_Score,eraser
+    global Stage1_Clear_Score,eraser,Game_Over_State
 
     for game_object in game_world.all_objects():
         game_object.update()
@@ -116,25 +124,6 @@ def update():
                 game_world.remove_object(enemy)
                 game_world.remove_object(ball)
                 Stage1_Clear_Score = Stage1_Clear_Score + 1
-
-    for enemy in Stage1_enemy_Cloud  :
-            if collide(enemy, CharacterMeiMei):
-                Stage1_enemy_Cloud.remove(enemy)
-                game_world.remove_object(enemy)
-                game_framework.change_state(Game_Over)
-
-    for enemy in Stage1_enemy_Sword :
-            if collide(enemy, CharacterMeiMei):
-                Stage1_enemy_Sword.remove(enemy)
-                game_world.remove_object(enemy)
-                game_framework.change_state(Game_Over)
-
-    for enemy in Stage1_enemy_Chicken :
-            if collide(enemy, CharacterMeiMei):
-                Stage1_enemy_Chicken.remove(enemy)
-                game_world.remove_object(enemy)
-                game_framework.change_state(Game_Over)
-
     for enemy in Stage1_enemy_Cloud:
         for ball in ball_list:
             if collide(enemy, ball):
@@ -152,6 +141,40 @@ def update():
                 game_world.remove_object(enemy)
                 game_world.remove_object(ball)
                 Stage1_Clear_Score = Stage1_Clear_Score + 1
+
+
+
+    for enemy in Stage1_enemy_Cloud:
+        if collide(enemy, CharacterMeiMei):
+            Stage1_enemy_Cloud.remove(enemy)
+            game_world.remove_object(enemy)
+            Game_Over_State=Game_Over_State+1
+
+
+    for enemy in Stage1_enemy_Sword:
+        if collide(enemy, CharacterMeiMei):
+            Stage1_enemy_Sword.remove(enemy)
+            game_world.remove_object(enemy)
+            Game_Over_State=Game_Over_State+1
+
+    for enemy in Stage1_enemy_Chicken:
+        if collide(enemy, CharacterMeiMei):
+            Stage1_enemy_Chicken.remove(enemy)
+            game_world.remove_object(enemy)
+            Game_Over_State=Game_Over_State+1
+
+    if Game_Over_State == 1:
+        game_world.remove_object(Stage1screen_HP_100)
+        game_world.add_object(Stage1screen_HP_70,0)
+        Game_Over_State=Game_Over_State+1
+
+    if Game_Over_State == 3:
+        game_world.remove_object(Stage1screen_HP_70)
+        game_world.add_object(Stage1screen_HP_30,0)
+        Game_Over_State=Game_Over_State+1
+
+    if Game_Over_State==5:
+        game_framework.change_state(Game_Over)
 
     for enemy in Stage1_enemy_Sword:
         if Stage1_Clear_Score==20:
