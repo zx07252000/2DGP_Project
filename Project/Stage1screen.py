@@ -4,12 +4,15 @@ import os
 
 from pico2d import *
 from Stage2screen import Stage2
+from Character_State import State
 
 class Stage1:
     def __init__(self):
         self.image=load_image('Resource_Stage\\stage1.png')
+        self.image2 = load_image('Resource_Screen\\Character_State_100.png')
         self.event_que = []
         self.x, self.y = 0, 382
+        self.x2,self.y2=350, 750
         self.change=0
         self.dir = 1
         self.velocity = 0
@@ -32,6 +35,7 @@ class Stage1:
         if (self.x == 0):
             self.change = 0
         self.image.clip_draw(self.x, -200, 1040, 767,500,self.y)
+        self.image2.clip_draw(0, 0, 700, 50, self.x2, self.y2)
         if (self.change==0 and self.x  < 1000):
             self.x+=2
         if (self.change==1):

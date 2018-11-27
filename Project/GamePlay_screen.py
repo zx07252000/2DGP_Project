@@ -11,6 +11,7 @@ import game_world
 import Stage_Clear
 import Game_Over
 
+#from Character_State import State
 from CharacterMeiMei import *
 from Stage1screen import Stage1
 from Stage2screen import Stage2
@@ -29,6 +30,7 @@ CharacterMeiMei=None
 Stage1_enemy_Cloud=[]
 Stage1_enemy_Chicken=[]
 Stage1_enemy_Sword=[]
+#Character_State=None
 ball=None
 
 Stage1_Clear_Score=0
@@ -55,13 +57,14 @@ def collide(a, b):
 
 def enter():
     global CharacterMeiMei,Stage1screen,Stage2screen,Stage3screen,Stage4screen,\
-        Stage1_enemy_Cloud,Stage1_enemy_Chicken,Stage1_enemy_Sword,ball
+        Stage1_enemy_Cloud,Stage1_enemy_Chicken,Stage1_enemy_Sword,Character_State
 
     CharacterMeiMei = MeiMei()
     Stage1screen=Stage1()
     Stage2screen = Stage2()
     Stage3screen=Stage3()
     Stage4screen = Stage4()
+    #Character_State=State()
 
     Stage1_enemy_Chicken = [Chicken(i) for i in range(10)]
     game_world.add_objects(Stage1_enemy_Chicken, 1)
@@ -74,6 +77,7 @@ def enter():
 
     game_world.add_object(Stage1screen, 0)
     game_world.add_object(CharacterMeiMei, 1)
+    # game_world.add_object(Character_State, 0)
 
     if Stage1_Clear_Score == 2:
         game_world.add_object(Stage2screen, 0)
@@ -134,7 +138,7 @@ def update():
     for enemy in Stage1_enemy_Cloud:
         for ball in ball_list:
             if collide(enemy, ball):
-                Stage1_enemy_Cloud. remove(enemy)
+                Stage1_enemy_Cloud.remove(enemy)
                 ball_list.remove(ball)
                 game_world.remove_object(enemy)
                 game_world.remove_object(ball)
@@ -150,15 +154,15 @@ def update():
                 Stage1_Clear_Score = Stage1_Clear_Score + 1
 
     for enemy in Stage1_enemy_Sword:
-        if Stage1_Clear_Score==2:
+        if Stage1_Clear_Score==20:
             game_world.remove_object(enemy)
 
     for enemy in Stage1_enemy_Cloud:
-        if Stage1_Clear_Score == 2:
+        if Stage1_Clear_Score == 20:
             game_world.remove_object(enemy)
 
     for enemy in Stage1_enemy_Chicken:
-        if Stage1_Clear_Score == 2:
+        if Stage1_Clear_Score == 20:
             game_world.remove_object(enemy)
             eraser=1
 

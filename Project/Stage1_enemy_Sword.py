@@ -20,8 +20,7 @@ ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 8
 
 class Sword:
-
-
+    image = None
     def __init__(self, i):
         self.x, self.y = 1000+200*i , random.randint(100,700)
         self.image = load_image('Resource_Monster\\Stage1_enemy_Sword.png')
@@ -49,7 +48,7 @@ class Sword:
         self.frame = (self.frame + 1) % 4
 
         self.x = clamp(25, self.x, 5000 - 25)
-        self.y=clamp(25,self.y,767-25)
+        self.y=clamp(25,self.y,767-75)
 
         if self.x<50:
             self.x=1000
