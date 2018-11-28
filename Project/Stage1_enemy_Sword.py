@@ -28,9 +28,9 @@ class Sword:
         self.velocity = random.randint(-10,-1)
         self.frame = 0
         self.timer = get_time()
-        self.length=random.randint(-10,10)
+        self.length=random.randint(10,20)
         self.length_count=0
-
+        self.y_change = 0
 
 
 
@@ -58,10 +58,15 @@ class Sword:
         self.x -= RUN_SPEED_PPS
         # 이동 값
 
-        if self.timer%3>2:
+        if self.y_change==0:
             self.y -= self.length
-        else:
+        if self.y_change == 1:
             self.y += self.length
+
+        if self.y > 767 - 70:
+            self.y_change = 0
+        if self.y < 30:
+            self.y_change = 1
         # y축 랜덤 이동
 
     def draw(self):

@@ -10,7 +10,7 @@ class Ball:
     def __init__(self, x = 400, y = 300, move = 1,length=1,frame=1):
         if Ball.image == None:
             Ball.image = load_image('Resource_Character\\Ball_1.png')
-        self.x, self.y, self.velocity ,self.length,self.frame= x, y, move,length,frame
+        self.x, self.y, self.velocity ,self.length,self.frame= x , y, move,length,frame
         self.Throw_Speed=300
 
     def get_bb(self):
@@ -22,6 +22,7 @@ class Ball:
 
     def update(self):
         self.x += self.Throw_Speed*game_framework.frame_time
+
 
         if self.x > 1060:
             game_world.remove_object(self)

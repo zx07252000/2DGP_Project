@@ -122,7 +122,7 @@ class RunState:
 
     @staticmethod
     def exit(MeiMei, event):
-        if event == SPACE_E:
+        if event == SPACE_E :
             MeiMei.fire_ball()
         pass
 
@@ -190,7 +190,7 @@ class MeiMei:
 
     def get_bb(self):
         # fill here
-        return self.x - 50, self.y - 50, self.x + 50, self.y + 50
+        return self.x - 20, self.y - 25, self.x + 20, self.y + 25
 
 
     def add_event(self, event):
@@ -209,7 +209,7 @@ class MeiMei:
     def draw(self):
         self.cur_state.draw(self)
         self.font.draw(self.x - 60, self.y + 50, '(Time:%3.2f)' % self.time, (255, 255, 0))
-
+        draw_rectangle(*self.get_bb())
     def handle_event(self, event):
         if (event.type, event.key) in key_event_table:
             key_event = key_event_table[(event.type, event.key)]

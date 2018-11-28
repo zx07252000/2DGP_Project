@@ -95,7 +95,7 @@ def enter():
     game_world.add_objects( Stage1_enemy_Cloud, 1)
 
     Boss_ball=[Boss_Ball(i) for i in range(10)]
-    game_world.add_objects(Boss_ball, 1)
+
 
     game_world.add_object(Stage1screen_HP_100, 0)
 
@@ -149,6 +149,7 @@ def update():
                 game_world.remove_object(ball)
                 Stage1_Clear_Score += 1
 
+
     for enemy in Stage1_enemy_Sword:
         for ball in ball_list:
             if collide(enemy, ball):
@@ -159,22 +160,16 @@ def update():
                 Stage1_Clear_Score+=1
 
 
-        for ball in ball_list:
-            if collide(Stage1_boss, ball):
-                game_world.remove_object(ball)
-                ball_list.remove(ball)
-                Boss_Hp -= 1
-            if Boss_Hp==0:
-                Stage1_boss.remove(Stage1_boss)
-                game_world.remove_object(Stage1_boss)
-                game_framework.change_state(Stage_Clear)
 
-    for Boss_Attack in Boss_ball:
-        if collide(Boss_Attack, CharacterMeiMei):
-            Boss_ball.remove(Boss_Attack)
-            game_world.remove_object(Boss_Attack)
-            Game_Over_State = Game_Over_State + 1
-
+    for ball in ball_list:
+        if collide(Stage1_boss, ball):
+            game_world.remove_object(ball)
+            ball_list.remove(ball)
+            Boss_Hp -= 1
+        if Boss_Hp==0:
+            Stage1_boss.remove(Stage1_boss)
+            game_world.remove_object(Stage1_boss)
+            game_framework.change_state(Stage_Clear)
 
 
     for enemy in Stage1_enemy_Cloud:
@@ -222,9 +217,17 @@ def update():
         if Stage1_Clear_Score == 29:
             game_world.remove_object(enemy)
 
-    if Stage1_Clear_Score==0:
+    if Stage1_Clear_Score==30:
         game_world.add_object(Stage1_boss, 1)
+        game_world.add_objects(Boss_ball, 1)
         Stage1_Clear_Score=Stage1_Clear_Score+1
+
+    for Boss_Attack in Boss_ball:
+        if collide(Boss_Attack, CharacterMeiMei):
+            Boss_ball.remove(Boss_Attack)
+            game_world.remove_object(Boss_Attack)
+            Game_Over_State = Game_Over_State + 1
+
 
 
 
