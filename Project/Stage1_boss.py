@@ -1,5 +1,6 @@
 from pico2d import *
 import game_framework
+from Boss_ball import Boss_Ball
 import game_world
 import random
 
@@ -19,52 +20,55 @@ ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 
 FRAMES_PER_ACTION = 8
 
+Boss_ball_list=[]
+
 class Boss1:
     image = None
 
     def __init__(self):
-        self.x, self.y = 1000+200 , random.randint(100,700)
+        self.x, self.y = 900 , 500
         self.image = load_image('Resource_Monster\\Stage1_boss.png')
         self.dir = 1
         self.velocity = random.randint(-10,-1)
         self.frame = 0
+        self.y_change=0
         self.timer = get_time()
-        self.length=random.randint(-10,10)
+        self.length=20
         self.length_count=0
 
 
 
-
     def get_bb(self):
+
         return self.x - 20, self.y - 20, self.x + 20, self.y + 20
-
-    def update(self):
-        pass
-
 
 
     def add_event(self, event):
         self.event_que.insert(0, event)
 
     def update(self):
+
         self.frame = (self.frame + 1) % 9
 
         self.x = clamp(25, self.x, 5000 - 25)
-        self.y=clamp(25,self.y,767-75)
+        self.y=clamp(75,self.y,767-50)
 
         if self.x<50:
             self.x=1000
             self.y=random.randint(0,900)
         # 끝지점에 도달했을때 좌표 초기화
 
-        self.x -= RUN_SPEED_PPS
-        # 이동 값
 
-        if self.timer%3>2:
+        if self.y_change==0:
             self.y -= self.length
-        else:
+        if self.y<76:
+            self.y_change=1
+        if self.y>767-51:
+            self.y_change=0
+
+        if self.y_change==1:
             self.y += self.length
-        # y축 랜덤 이동
+            # y축 랜덤 이동
 
     def draw(self):
         self.image.clip_draw( self.frame * 240 , 800, 195, 270,  self.x,  self.y)
