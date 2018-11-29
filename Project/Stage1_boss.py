@@ -40,7 +40,7 @@ class Boss1:
 
     def get_bb(self):
 
-        return self.x - 20, self.y - 20, self.x + 20, self.y + 20
+        return self.x - 100, self.y - 100, self.x + 100, self.y + 100
 
 
     def add_event(self, event):
