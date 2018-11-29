@@ -24,6 +24,7 @@ class Stage1_HP_100:
         self.change=0
         self.dir = 1
         self.velocity = 0
+
         self.bgm = load_wav('Resource_Bgm\\Stage1_Bgm.wav')
         self.bgm.set_volume(64)
         self.bgm.play()

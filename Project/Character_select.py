@@ -20,12 +20,16 @@ MeiMei=1
 Wukung=2
 
 def enter():
-    global Character_Select_Screen,Choose_MeiMei,Not_Choose_MeiMei,Choose_Wukung,Not_Choose_Wukung
+    global Character_Select_Screen,Choose_MeiMei,Not_Choose_MeiMei,Choose_Wukung,Not_Choose_Wukung,Character_select_bgm
     Character_Select_Screen = load_image('Resource_Screen\\character select.png')
     Choose_MeiMei= load_image('Resource_Screen\\MeiMei_R.png')
     Not_Choose_MeiMei= load_image('Resource_Screen\\MeiMei_L.png')
     Choose_Wukung= load_image('Resource_Screen\\Wukung_R.png')
     Not_Choose_Wukung= load_image('Resource_Screen\\Wukung_L.png')
+
+    Character_select_bgm = load_music('Resource_Bgm\\Character_select.wav')
+    Character_select_bgm.set_volume(64)
+
     pass
 
 
@@ -54,11 +58,16 @@ def handle_events():
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.change_state(Main_Screen)
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_LEFT):
+                Character_select_bgm.play()
+
                 Character_Change= MeiMei
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
+                Character_select_bgm.play()
+
                 Character_Change = Wukung
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE)and Character_Change==MeiMei:
                 game_framework.change_state(GamePlay_screen)
+
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE)and Character_Change==Wukung:
                 game_framework.change_state(GamePlay_screen2)
 

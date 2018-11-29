@@ -16,7 +16,7 @@ Select_Option=3
 Select_Exit=2
 
 def enter():
-    global image,New_icon,Choose_option,Not_Choose_option,Choose_Exit,Not_Choose_Exit
+    global image,New_icon,Choose_option,Not_Choose_option,Choose_Exit,Not_Choose_Exit,bgm
 
     image=load_image('Resource_Screen\\Main_Screen.png')
     New_icon=load_image('Resource_Screen\\newgame.png')
@@ -24,6 +24,11 @@ def enter():
     Not_Choose_option=load_image('Resource_Screen\\Option_L.png')
     Choose_Exit=load_image('Resource_Screen\\Exit.png')
     Not_Choose_Exit = load_image('Resource_Screen\\Exit_L.png')
+
+    bgm = load_music('Resource_Bgm\\Main_Theme.wav')
+    bgm.set_volume(128)
+    bgm.play()
+
 
     pass
 
@@ -53,6 +58,7 @@ def handle_events():
                 Select_Menu=Select_Menu+1
             elif Select_Menu==Select_New and(event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
                 game_framework.change_state(Character_select)
+
 
 
     pass
