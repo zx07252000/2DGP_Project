@@ -31,7 +31,7 @@ def enter():
 
     Menu_bgm=load_music('Resource_Bgm\\Menu_Bgm.wav')
     Menu_bgm.set_volume(32)
-    Menu_bgm.play()
+
     pass
 
 def exit():

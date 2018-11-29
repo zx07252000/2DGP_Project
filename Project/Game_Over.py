@@ -9,8 +9,10 @@ image = None
 logo_time=0.0
 
 def enter():
-    global image
-
+    global image,bgm
+    bgm = load_wav('Resource_Bgm\\Game_over.wav')
+    bgm.set_volume(64)
+    bgm.play()
     image=load_image('Resource_Screen\\Game_Over.png')
 
     pass
@@ -36,10 +38,11 @@ def draw():
 def update():
     global logo_time
 
-    if (logo_time > 1.0):
+    if (logo_time > 5.0):
         logo_time = 0
         # game_framework.quit()
         game_framework.change_state(Main_Screen)
+        bgm.__del__()
     delay(0.01)
     logo_time += 0.01
     pass

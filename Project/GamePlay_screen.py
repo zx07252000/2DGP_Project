@@ -188,8 +188,6 @@ def update():
             game_world.remove_object(enemy)
             Game_Over_State=Game_Over_State+1
 
-
-
     for enemy in Stage1_enemy_Sword:
         if collide(enemy, CharacterMeiMei):
             Stage1_enemy_Sword.remove(enemy)
@@ -214,6 +212,10 @@ def update():
         Game_Over_State=Game_Over_State+1
 
     if Game_Over_State==5:
+
+        Stage1screen_HP_100.bgm.__del__()
+        Stage1screen_HP_70.bgm.__del__()
+        Stage1screen_HP_30.bgm.__del__()
         game_framework.change_state(Game_Over)
 
     for enemy in Stage1_enemy_Sword:
