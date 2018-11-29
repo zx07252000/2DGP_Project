@@ -81,7 +81,6 @@ def enter():
 
     Stage1_boss = Boss1()
 
-
     Stage2screen = Stage2()
     Stage3screen=Stage3()
     Stage4screen = Stage4()
@@ -165,11 +164,12 @@ def update():
 
 
 
-    if Stage1_Clear_Score==3:
+    if Stage1_Clear_Score==29:
         game_world.add_object(Stage1_boss, 1)
         game_world.add_objects(Boss_ball, 1)
         Stage1_Clear_Score=Stage1_Clear_Score+1
 
+    if Stage1_Clear_Score > 28:
         for ball in ball_list:
             if collide(ball,Stage1_boss):
                 game_world.remove_object(ball)
@@ -177,8 +177,12 @@ def update():
                 Boss_Hp -= 10
 
 
-    if Boss_Hp<1:
+    if Boss_Hp==0:
         game_world.remove_object(Stage1_boss)
+        Stage1screen_HP_100.bgm.__del__()
+        Stage1screen_HP_70.bgm.__del__()
+        Stage1screen_HP_30.bgm.__del__()
+
         game_framework.change_state(Stage_Clear)
 
 
@@ -219,15 +223,15 @@ def update():
         game_framework.change_state(Game_Over)
 
     for enemy in Stage1_enemy_Sword:
-        if Stage1_Clear_Score==5:
+        if Stage1_Clear_Score==30:
             game_world.remove_object(enemy)
 
     for enemy in Stage1_enemy_Cloud:
-        if Stage1_Clear_Score == 5:
+        if Stage1_Clear_Score == 30:
             game_world.remove_object(enemy)
 
     for enemy in Stage1_enemy_Chicken:
-        if Stage1_Clear_Score == 5:
+        if Stage1_Clear_Score == 30:
             game_world.remove_object(enemy)
 
 
@@ -239,15 +243,11 @@ def update():
 
 
 
-
-
-
-
 def draw():
     clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()
-    print(Stage1_Clear_Score)
+
     update_canvas()
 
 

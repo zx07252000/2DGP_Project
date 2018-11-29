@@ -50,7 +50,7 @@ class Stage1_HP_100:
         self.image.clip_draw(self.x, -200, 1040, 767,500,self.y)
         self.image2.clip_draw(0, 0, 500, 50, self.x2, self.y2)
         self.score_image.clip_draw(0, 0, 200, 50, self.score_image.x, self.y2-10)
-        self.font.draw(self.score_image.x+200, self.y2-10, '%d' % GamePlay_screen.score, (255, 255, 255))
+        self.font.draw(self.score_image.x+100, self.y2-10, '%d' % GamePlay_screen.score, (255, 255, 255))
 
 
         if (self.change==0 and self.x  < 1000):
