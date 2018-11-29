@@ -67,7 +67,7 @@ def handle_events():
                 Character_Change = Wukung
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE)and Character_Change==MeiMei:
                 game_framework.change_state(GamePlay_screen)
-
+                Main_Screen.bgm.__del__()
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE)and Character_Change==Wukung:
                 game_framework.change_state(GamePlay_screen2)
 
