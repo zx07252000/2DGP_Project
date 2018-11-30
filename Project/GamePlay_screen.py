@@ -139,7 +139,7 @@ def update():
         for ball in ball_list:
             if collide(enemy, ball):
                 remove_enemys.append(enemy)
-                remove_balls.append(enemy)
+                remove_balls.append(ball)
 
     for enemy in remove_enemys:
         while True:
@@ -162,7 +162,7 @@ def update():
         for ball in ball_list:
             if collide(enemy, ball):
                 remove_enemys.append(enemy)
-                remove_balls.append(enemy)
+                remove_balls.append(ball)
 
     for enemy in remove_enemys:
         while True:
@@ -187,7 +187,7 @@ def update():
         for ball in ball_list:
             if collide(enemy, ball):
                 remove_enemys.append(enemy)
-                remove_balls.append(enemy)
+                remove_balls.append(ball)
 
     for enemy in remove_enemys:
         while True:
