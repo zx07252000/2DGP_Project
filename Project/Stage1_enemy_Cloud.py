@@ -17,14 +17,14 @@ TIME_PER_ACTION = 0.5
 
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 
-FRAMES_PER_ACTION = 8
+FRAMES_PER_ACTION = 4
 
 class Cloud:
 
     image=None
     def __init__(self, i):
-        self.x, self.y = 1000+200*i , random.randint(100,700)
         self.image = load_image('Resource_Monster\\Stage1_enemy_Cloud.png')
+        self.x, self.y = 1000 + 200 * i, random.randint(100, 700)
         self.dir = 1
         self.velocity = random.randint(-10,-1)
         self.frame = 0
@@ -70,6 +70,7 @@ class Cloud:
         if self.y < 30:
             self.y_change = 1
         # y축 랜덤 이동
+        pass
 
     def draw(self):
         self.image.clip_draw(self.frame * 47, 50, 50, 40, self.x, self.y)

@@ -70,14 +70,14 @@ def collide(a, b):
 
 def enter():
     global CharacterMeiMei,Stage1screen_HP_100,Stage1screen_HP_70,Stage1screen_HP_30,Stage2screen,Stage3screen,Stage4screen,\
-        Stage1_enemy_Cloud,Stage1_enemy_Chicken,Stage1_enemy_Sword,Character_State,Ball,Stage1_boss,Boss_ball
+        Stage1_enemy_Cloud,Stage1_enemy_Chicken,Stage1_enemy_Sword,Character_State,Stage1_boss,Boss_ball
 
     CharacterMeiMei = MeiMei()
     Stage1screen_HP_100=Stage1_HP_100()
     Stage1screen_HP_70=Stage1_HP_70()
     Stage1screen_HP_30=Stage1_HP_30()
 
-    Ball=ball_list
+
 
     Stage1_boss = Boss1()
 
@@ -132,35 +132,80 @@ def update():
     for game_object in game_world.all_objects():
         game_object.update()
 
+    remove_enemys = []
+    remove_balls = []
+
     for enemy in Stage1_enemy_Chicken:
         for ball in ball_list:
-            if collide(enemy,ball):
+            if collide(enemy, ball):
+                remove_enemys.append(enemy)
+                remove_balls.append(enemy)
+
+    for enemy in remove_enemys:
+        while True:
+            try:
                 Stage1_enemy_Chicken.remove(enemy)
-                ball_list.remove(ball)
                 game_world.remove_object(enemy)
-                game_world.remove_object(ball)
                 Stage1_Clear_Score += 1
                 score = score + 100
+            except:
+                break
+    for ball in remove_balls:
+        while True:
+            try:
+                ball_list.remove(ball)
+                game_world.remove_object(ball)
+            except:
+                break
 
     for enemy in Stage1_enemy_Cloud:
         for ball in ball_list:
             if collide(enemy, ball):
+                remove_enemys.append(enemy)
+                remove_balls.append(enemy)
+
+    for enemy in remove_enemys:
+        while True:
+            try:
                 Stage1_enemy_Cloud.remove(enemy)
-                ball_list.remove(ball)
                 game_world.remove_object(enemy)
-                game_world.remove_object(ball)
                 Stage1_Clear_Score += 1
                 score = score + 100
+            except:
+                break
+    for ball in remove_balls:
+        while True:
+            try:
+                ball_list.remove(ball)
+                game_world.remove_object(ball)
+            except:
+                break
+
+
 
     for enemy in Stage1_enemy_Sword:
         for ball in ball_list:
             if collide(enemy, ball):
+                remove_enemys.append(enemy)
+                remove_balls.append(enemy)
+
+    for enemy in remove_enemys:
+        while True:
+            try:
                 Stage1_enemy_Sword.remove(enemy)
-                ball_list.remove(ball)
                 game_world.remove_object(enemy)
+                Stage1_Clear_Score += 1
+                score = score + 100
+            except:
+                break
+    for ball in remove_balls:
+        while True:
+            try:
+                ball_list.remove(ball)
                 game_world.remove_object(ball)
-                Stage1_Clear_Score+=1
-                score=score+100
+            except:
+                break
+
 
 
 
@@ -169,7 +214,7 @@ def update():
         game_world.add_objects(Boss_ball, 1)
         Stage1_Clear_Score=Stage1_Clear_Score+1
 
-    if Stage1_Clear_Score > 28:
+    if Stage1_Clear_Score > 29:
         for ball in ball_list:
             if collide(ball,Stage1_boss):
                 game_world.remove_object(ball)
@@ -247,6 +292,8 @@ def draw():
     clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()
+
+    print(CharacterMeiMei .Special_Charge)
 
     update_canvas()
 

@@ -1,5 +1,6 @@
 from pico2d import *
 from ball import Ball
+from ball import Special_Ball
 
 import game_world
 import random
@@ -23,7 +24,7 @@ FRAMES_PER_ACTION = 8
 
 
 # Boy Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP,SPACE_E,UP_DOWN,DOWN_DOWN,UP_UP,DOWN_UP = range(9)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP,SPACE_E,UP_DOWN,DOWN_DOWN,UP_UP,DOWN_UP,SKILL_N = range(10)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -34,11 +35,15 @@ key_event_table = {
     (SDL_KEYDOWN, SDLK_UP): UP_DOWN,
     (SDL_KEYUP, SDLK_DOWN): DOWN_UP,
     (SDL_KEYDOWN, SDLK_SPACE): SPACE_E,
-    (SDL_KEYDOWN, SDLK_DOWN): DOWN_DOWN
+    (SDL_KEYDOWN, SDLK_DOWN): DOWN_DOWN,
+
+    (SDL_KEYDOWN, SDLK_n): SKILL_N
+
 }
 
 
 ball_list=[]
+skill_ball_list=[]
 
 class IdleState:
 
@@ -73,8 +78,17 @@ class IdleState:
     def exit(MeiMei, event):
         if event == SPACE_E:
             MeiMei.fire_ball()
+            MeiMei.Special_Charge+=1
 
-        pass
+        if MeiMei.Special_Charge==30:
+            MeiMei.Special_Shot+=1
+            MeiMei.Special_Charge=0
+
+        if (event == SKILL_N) and (MeiMei.Special_Shot>0):
+            MeiMei.Special_ball()
+            MeiMei.Special_Shot-=1
+
+
 
     @staticmethod
     def do(MeiMei):
@@ -125,6 +139,15 @@ class RunState:
     def exit(MeiMei, event):
         if event == SPACE_E :
             MeiMei.fire_ball()
+            MeiMei.Special_Charge += 1
+
+        if MeiMei.Special_Charge == 30:
+            MeiMei.Special_Shot += 1
+            MeiMei.Special_Charge = 0
+
+        if (event == SKILL_N) and (MeiMei.Special_Shot > 0):
+            MeiMei.Special_ball  ()
+            MeiMei.Special_Shot -= 1
 
 
     @staticmethod
@@ -155,10 +178,10 @@ class RunState:
 next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
                 DOWN_UP:RunState,DOWN_DOWN:RunState,UP_DOWN:RunState,UP_UP:RunState,
-                SPACE_E: IdleState},
+                SPACE_E: IdleState,SKILL_N:IdleState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: RunState, RIGHT_DOWN: RunState,
                DOWN_UP:IdleState,DOWN_DOWN:RunState,UP_DOWN:RunState,UP_UP:IdleState,
-               SPACE_E: RunState}
+               SPACE_E: RunState,SKILL_N:RunState}
 }
 
 class MeiMei:
@@ -171,6 +194,8 @@ class MeiMei:
         self.velocity = 0
         self.frame = 0
         self.timer = 0
+        self.Special_Charge=0
+        self.Special_Shot=0
 
         self.length=0
         self.event_que = []
@@ -188,6 +213,15 @@ class MeiMei:
         game_world.add_object(ball, 1)
         ball_list.append(ball)
         self.Ball_Attack()
+
+
+    def Special_ball(self):
+        Special_ball = Special_Ball(self.x, self.y, self.dir * 3)
+        game_world.add_object(Special_ball, 1)
+        ball_list.append(Special_ball)
+        pass
+
+
 
     def get_bb(self):
         # fill here
