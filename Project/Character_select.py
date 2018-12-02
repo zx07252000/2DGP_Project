@@ -4,8 +4,9 @@ from pico2d import *
 import game_framework
 import Main_Screen
 
-import GamePlay_screen
-import GamePlay_screen2
+import GamePlay_Stage1
+import GamePlay_Stage2
+
 
 name ="Character_select"
 Character_Select_Screen = None
@@ -57,19 +58,25 @@ def handle_events():
         else:
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.change_state(Main_Screen)
-            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_LEFT):
+            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_LEFT):
                 Character_select_bgm.play()
 
                 Character_Change= MeiMei
-            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
+            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
                 Character_select_bgm.play()
 
                 Character_Change = Wukung
-            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE)and Character_Change==MeiMei:
-                game_framework.change_state(GamePlay_screen)
+            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE)and Character_Change==MeiMei:
+                game_framework.change_state(GamePlay_Stage2)
                 Main_Screen.bgm.__del__()
-            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE)and Character_Change==Wukung:
-                game_framework.change_state(GamePlay_screen2)
+                Character_select_bgm.stop()
+
+
+            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE)and Character_Change==Wukung:
+                game_framework.change_state(GamePlay_Stage2)
+                Main_Screen.bgm.__del__()
+                Character_select_bgm.stop()
+
 
     pass
 

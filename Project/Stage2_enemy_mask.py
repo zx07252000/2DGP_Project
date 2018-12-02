@@ -1,113 +1,103 @@
 from pico2d import *
+import game_framework
 import game_world
+import math
 import random
+import GamePlay_Stage2
+from BehaviorTree import BehaviorTree, SelectorNode, SequenceNode, LeafNode
 
-class IdleState:
+PIXEL_PER_METER = (10.0 / 0.3)
 
-    @staticmethod
-    def enter(Mask, event):
+RUN_SPEED_KMPH = 30.0
 
-        Mask.velocity-=1
-        Mask.x=1050
-        Mask.y =random.randint(100,700)
+RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 
-        pass
+RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 
+RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
-    @staticmethod
-    def exit(Mask, event):
-        pass
+TIME_PER_ACTION = 0.5
 
-    @staticmethod
-    def do(Mask):
-        Mask.frame = (Mask.frame + 1) % 4
-        Mask.x = clamp(25, Mask.x, 1020 - 25)
-        Mask.x+=Mask.velocity
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 
-        pass
-
-
-
-    @staticmethod
-    def draw(Mask):
-        if Mask.dir == 1:
-
-            Mask.image.clip_draw(Mask.frame*50-2 , 50, 45, 40, Mask.x, Mask.y)
-
-        else:
-
-            Mask.image.clip_draw(Mask.frame*50-2, 50, 45, 40, Mask.x, Mask.y)
-            pass
-
-
-class RunState:
-
-    @staticmethod
-    def enter(Mask, event):
-
-        Mask.dir = Mask.velocity
-        pass
-
-    @staticmethod
-    def exit(Mask, event):
-
-        pass
-
-    @staticmethod
-    def do(Mask):
-        Mask.frame = (Mask.frame + 1) % 4
-        Mask.timer -= 1
-        Mask.x +=Mask.velocity
-        Mask.y += Mask.length
-        Mask.x = clamp(25, Mask.x, 1020 - 25)
-        Mask.y = clamp(25, Mask.y, 767 - 25)
-        pass
-
-    @staticmethod
-    def draw(Mask):
-        if Mask.velocity == 1:
-
-            Mask.image.clip_draw(Mask.frame*100, 0, 60, 60, Mask.x, Mask.y)
-
-        else:
-
-            Mask.image.clip_draw(Mask.frame*100, 0, 60, 60, Mask.x, Mask.y)
-            pass
-
-
+FRAMES_PER_ACTION = 8
 
 class Mask:
+    image = None
 
-    def __init__(self):
-        self.x, self.y = 70 , 70
-        self.image = load_image('Resource_Monster\\Stage1_enemy_Mask.png')
-        self.dir = 1
-        self.velocity = 0
+    def __init__(self, i):
+        self.x, self.y = 1000+200*i , random.randint(100,700)
+        self.image = load_image('Resource_Monster\\Stage2_enemy_mask.png')
+        self.dir = random.random()*2*math.pi
+        self.velocity = random.randint(10,20)
         self.frame = 0
-        self.timer = 0
-        self.length=0
-        self.event_que = []
-        self.cur_state = IdleState
-        self.cur_state.enter(self, None)
+        self.timer = 1.0
+        self.speed = 0
+        self.length=random.randint(10,20)
+        self.length_count=0
+        self.x_change=0
+        self.build_behavior_tree()
+
+    def get_bb(self):
+        return self.x - 20, self.y - 20, self.x + 20, self.y + 20
 
 
-    def add_event(self, event):
-        self.event_que.insert(0, event)
+    def wander(self):
+        self.speed = RUN_SPEED_PPS
+        self.timer -= game_framework.frame_time
+        if self.timer < 0:
+            self.timer += 1.0
+            self.dir = random.random() * 2 * math.pi
+
+        return BehaviorTree.SUCCESS
+        pass
+
+    def find_player(self):
+        CharacterMeiMei = GamePlay_Stage2.get_CharacterMeiMei()
+
+        distance = (CharacterMeiMei.x - self.x) ** 2 + (CharacterMeiMei.y - self.y) ** 2
+        if distance < (PIXEL_PER_METER * 10) ** 2:
+            self.dir = math.atan2(CharacterMeiMei.y - self.y, CharacterMeiMei.x - self.x)
+            return BehaviorTree.SUCCESS
+        else:
+            self.speed = 0
+            return BehaviorTree.FAIL
+        pass
+
+    def move_to_player(self):
+        self.speed = RUN_SPEED_PPS
+        return BehaviorTree.SUCCESS
+        pass
+
+    def build_behavior_tree(self):
+        wander_node = LeafNode("Wander", self.wander)
+        find_player_node = LeafNode("Find Player", self.find_player)
+        move_to_player_node = LeafNode("Move to Player", self.move_to_player)
+        chase_node = SequenceNode("Chase")
+        chase_node.add_children(find_player_node, move_to_player_node)
+        wander_chase_node = SelectorNode("WanderChase")
+        wander_chase_node.add_children(chase_node, wander_node)
+        self.bt = BehaviorTree(wander_chase_node)
+        pass
 
     def update(self):
-        self.cur_state.do(self)
-        if len(self.event_que) > 0:
-            event = self.event_que.pop()
-            self.cur_state.exit(self, event)
-            self.cur_state = next_state_table[self.cur_state][event]
-            self.cur_state.enter(self, event)
-        pass
-    def draw(self):
-        self.cur_state.draw(self)
+        self.bt.run()
+        self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
+
+        if self.x<30:
+            self.x=1500
+
+
+
+        self.x += self.speed * math.cos(self.dir) * game_framework.frame_time-10
+        self.y += self.speed * math.sin(self.dir) * game_framework.frame_time
+        self.x = clamp(25, self.x, 5000 - 25)
+        self.y = clamp(25, self.y, 767 - 75)
         pass
 
-    def handle_event(self, event):
-        if (event.type, event.key) in key_event_table:
-            key_event = key_event_table[(event.type, event.key)]
-            self.add_event(key_event)
+
+    def draw(self):
+        self.image.clip_draw( 50 , 50, 45, 40,  self.x,  self.y)
+        draw_rectangle(*self.get_bb())
+
         pass

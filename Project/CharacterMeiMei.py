@@ -2,6 +2,9 @@ from pico2d import *
 from ball import Ball
 from ball import Special_Ball
 
+
+import ball
+import Character_select
 import game_world
 import random
 
@@ -45,6 +48,8 @@ key_event_table = {
 ball_list=[]
 skill_ball_list=[]
 
+
+
 class IdleState:
 
     @staticmethod
@@ -52,26 +57,24 @@ class IdleState:
         MeiMei.time = get_time()
         if event == RIGHT_DOWN:
             MeiMei.velocity += RUN_SPEED_PPS
-        elif event == LEFT_DOWN:
-            MeiMei.velocity -= RUN_SPEED_PPS
-
         elif event == RIGHT_UP:
+            MeiMei.velocity -= RUN_SPEED_PPS
+        if event == LEFT_DOWN:
             MeiMei.velocity -= RUN_SPEED_PPS
         elif event == LEFT_UP:
             MeiMei.velocity += RUN_SPEED_PPS
 
-        elif event == DOWN_DOWN:
+        if event == DOWN_DOWN:
             MeiMei.length -= RUN_SPEED_PPS
-        elif event == UP_DOWN:
-            MeiMei.length += RUN_SPEED_PPS
-
         elif event == DOWN_UP:
+            MeiMei.length += RUN_SPEED_PPS
+        if event == UP_DOWN:
             MeiMei.length += RUN_SPEED_PPS
         elif event == UP_UP:
             MeiMei.length -= RUN_SPEED_PPS
 
 
-        MeiMei.time = get_time()
+
 
 
     @staticmethod
@@ -188,7 +191,11 @@ class MeiMei:
 
     def __init__(self):
         self.x, self.y = 70 , 70
-        self.image = load_image('Resource_Character\\CharacterMeiMei.png')
+        if Character_select.Character_Change==2:
+            self.image = load_image('Resource_Character\\CharacterWukung3.png')
+        if Character_select.Character_Change == 1:
+            self.image = load_image('Resource_Character\\CharacterMeiMei.png')
+
         self.font = load_font('Resource_Temporary\\ENCR10B.TTF', 16)
         self.dir = 1
         self.velocity = 0

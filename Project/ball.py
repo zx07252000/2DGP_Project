@@ -2,6 +2,10 @@ from pico2d import *
 import game_world
 import game_framework
 
+
+
+ball_list=[]
+
 class Ball:
     MIN_Throw_SPEED = 50  # 50 pps = 1.5 meter per sec
     MAX_Throw_SPEED = 200  # 200 pps = 6 meter per sec
@@ -24,7 +28,7 @@ class Ball:
         self.x += self.Throw_Speed*game_framework.frame_time
 
 
-        if self.x > 1060:
+        if self.x > 900:
             game_world.remove_object(self)
 
     def stop(self):
@@ -51,8 +55,9 @@ class Special_Ball:
     def update(self):
         self.x += self.Throw_Speed * game_framework.frame_time
 
-        if self.x > 1060:
+        if self.x > 1200:
             game_world.remove_object(self)
+
 
     def stop(self):
         self.Throw_Speed = 0

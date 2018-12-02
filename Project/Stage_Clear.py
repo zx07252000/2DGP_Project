@@ -1,7 +1,9 @@
 
 from pico2d import *
 import game_framework
-import GamePlay_screen2
+import GamePlay_Stage1
+import GamePlay_Stage2
+
 
 name = "Stage_Clear"
 image = None
@@ -41,7 +43,7 @@ def update():
     if (logo_time > 5.0):
         logo_time = 0
         # game_framework.quit()
-        game_framework.change_state(GamePlay_screen2)
+        game_framework.change_state(GamePlay_Stage2)
     delay(0.01)
     logo_time += 0.01
     pass

@@ -10,6 +10,8 @@ import game_framework
 import game_world
 import Stage_Clear
 import Game_Over
+import Character_select
+
 
 from CharacterMeiMei import *
 from Stage1screen_HP_100 import Stage1_HP_100
@@ -19,10 +21,6 @@ from Stage1screen_HP_30 import Stage1_HP_30
 from ball import Ball
 from Boss_ball import Boss_Ball
 
-from Stage2screen import Stage2
-from Stage3screen import Stage3
-from Stage4screen import Stage4
-
 from Stage1_enemy_Cloud import Cloud
 from Stage1_enemy_Chicken import Chicken
 from Stage1_enemy_Sword import Sword
@@ -31,7 +29,7 @@ from Stage1_boss import Boss1
 
 
 
-name = "GamePlay_screen"
+name = "GamePlay_Stage1"
 
 CharacterMeiMei=None
 Stage1_enemy_Cloud=[]
@@ -69,21 +67,21 @@ def collide(a, b):
     return True
 
 def enter():
-    global CharacterMeiMei,Stage2screen_HP_100,Stage2screen_HP_70,Stage2screen_HP_30,\
-        Stage1_enemy_Cloud,Stage1_enemy_Chicken,Stage1_enemy_Sword,Character_State,Stage1_boss,Boss_ball
+    global CharacterMeiMei,Stage1screen_HP_100,Stage1screen_HP_70,Stage1screen_HP_30,Stage2screen,Stage3screen,Stage4screen,\
+        Stage1_enemy_Cloud,Stage1_enemy_Chicken,Stage1_enemy_Sword,Character_State,Stage1_boss,Boss_ball,CharacterWukung
+
+
 
     CharacterMeiMei = MeiMei()
-    Stage2screen_HP_100=Stage1_HP_100()
-    Stage2screen_HP_70=Stage1_HP_70()
-    Stage2screen_HP_30=Stage1_HP_30()
+    Stage1screen_HP_100=Stage1_HP_100()
+    Stage1screen_HP_70=Stage1_HP_70()
+    Stage1screen_HP_30=Stage1_HP_30()
 
 
 
     Stage1_boss = Boss1()
 
-    Stage2screen = Stage2()
-    Stage3screen=Stage3()
-    Stage4screen = Stage4()
+
 
     Stage1_enemy_Chicken = [Chicken(i) for i in range(10)]
     game_world.add_objects(Stage1_enemy_Chicken, 1)
@@ -97,7 +95,7 @@ def enter():
     Boss_ball=[Boss_Ball(i) for i in range(10)]
 
 
-    game_world.add_object(Stage2screen_HP_100, 0)
+    game_world.add_object(Stage1screen_HP_100, 0)
 
     game_world.add_object(CharacterMeiMei, 1)
 
@@ -139,7 +137,7 @@ def update():
         for ball in ball_list:
             if collide(enemy, ball):
                 remove_enemys.append(enemy)
-                remove_balls.append(enemy)
+                remove_balls.append(ball)
 
     for enemy in remove_enemys:
         while True:
@@ -162,7 +160,7 @@ def update():
         for ball in ball_list:
             if collide(enemy, ball):
                 remove_enemys.append(enemy)
-                remove_balls.append(enemy)
+                remove_balls.append(ball)
 
     for enemy in remove_enemys:
         while True:
@@ -187,7 +185,7 @@ def update():
         for ball in ball_list:
             if collide(enemy, ball):
                 remove_enemys.append(enemy)
-                remove_balls.append(enemy)
+                remove_balls.append(ball)
 
     for enemy in remove_enemys:
         while True:
@@ -209,12 +207,12 @@ def update():
 
 
 
-    if Stage1_Clear_Score==29:
+    if Stage1_Clear_Score==20:
         game_world.add_object(Stage1_boss, 1)
         game_world.add_objects(Boss_ball, 1)
         Stage1_Clear_Score=Stage1_Clear_Score+1
 
-    if Stage1_Clear_Score > 29:
+    if Stage1_Clear_Score > 20:
         for ball in ball_list:
             if collide(ball,Stage1_boss):
                 game_world.remove_object(ball)
@@ -224,9 +222,9 @@ def update():
 
     if Boss_Hp==0:
         game_world.remove_object(Stage1_boss)
-        Stage2screen_HP_100.bgm.__del__()
-        Stage2screen_HP_70.bgm.__del__()
-        Stage2screen_HP_30.bgm.__del__()
+        Stage1screen_HP_100.bgm.__del__()
+        Stage1screen_HP_70.bgm.__del__()
+        Stage1screen_HP_30.bgm.__del__()
 
         game_framework.change_state(Stage_Clear)
 

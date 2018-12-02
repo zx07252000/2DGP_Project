@@ -2,7 +2,10 @@
 from pico2d import *
 import game_framework
 import Main_Screen
-import GamePlay_screen2
+
+import GamePlay_Stage1
+import GamePlay_Stage2
+
 
 name = "Stage_Clear"
 image = None
